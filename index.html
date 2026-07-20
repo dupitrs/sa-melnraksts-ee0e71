@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sanita Aišpure · Sistēmiskie sakārtojumi un konsultācijas Rīgā</title>
+<meta name="description" content="Sertificētas klīniskās un veselības psiholoģes Sanitas Aišpures prakse: sistēmiskie ģimenes sakārtojumi, konsultācijas 1:1 un grupas Rīgā.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="lv_LV">
+<meta property="og:title" content="Sanita Aišpure · Sistēmiskie sakārtojumi un konsultācijas Rīgā">
+<meta property="og:description" content="Sertificētas klīniskās un veselības psiholoģes prakse: sistēmiskie ģimenes sakārtojumi, konsultācijas 1:1 un grupas Rīgā.">
+<meta property="og:url" content="https://rast-studio.github.io/sa-melnraksts-ee0e71/">
+<meta property="og:image" content="https://rast-studio.github.io/sa-melnraksts-ee0e71/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500..700;1,500..700&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --krems: #F4EDE2;
+    --tinte: #221B14;
+    --safrans: #B8541A;
+    --pelni: #7C7060;
+    --pelni-gaisi: #B9AFA2;
+    --vietturis: rgba(34, 27, 20, .45);
+    --displejs: 'Cormorant Garamond', serif;
+    --teksts: 'Work Sans', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  img { max-width: 100%; height: auto; display: block; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--teksts);
+    background: var(--krems);
+    color: var(--tinte);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--safrans); outline-offset: 3px; }
+
+  .josla {
+    background: var(--tinte);
+    color: var(--krems);
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-align: center;
+    padding: 9px 16px;
+  }
+
+  .ietvars { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+
+  header.galvene { padding: 22px 0 0; }
+  .galvene-rinda { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .zimols { font-family: var(--displejs); font-weight: 700; font-size: 23px; text-decoration: none; letter-spacing: .01em; }
+  nav.izvelne { display: flex; gap: 22px; align-items: baseline; }
+  nav.izvelne a { text-decoration: none; font-size: 14px; letter-spacing: .04em; color: var(--pelni); }
+  nav.izvelne a:hover { color: var(--tinte); }
+  nav.izvelne a.izcelts { color: var(--tinte); border-bottom: 2px solid var(--safrans); padding-bottom: 2px; }
+
+  .uzacs {
+    font-size: 12px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--pelni);
+    margin-bottom: 18px;
+  }
+
+  /* Hero */
+  .varonis { padding: 64px 0 72px; position: relative; }
+  .varonis-rezgis { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: center; }
+  .varonis h1 {
+    font-family: var(--displejs);
+    font-weight: 600;
+    font-size: clamp(44px, 7.8vw, 94px);
+    line-height: 1.02;
+    letter-spacing: -.005em;
+    max-width: 13ch;
+  }
+  .varonis h1 .akcents { font-style: italic; font-weight: 600; color: var(--safrans); }
+  .varonis-apraksts { margin-top: 26px; font-size: 19px; max-width: 44ch; color: var(--tinte); }
+  .varonis-darbibas { margin-top: 34px; display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+  .poga {
+    display: inline-block;
+    background: var(--tinte);
+    color: var(--krems);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: .03em;
+    padding: 15px 30px;
+    border-radius: 2px;
+    transition: background-color .25s ease;
+  }
+  .poga:hover { background: var(--safrans); }
+  .varonis-meta { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--pelni); }
+
+  .lauks { width: 210px; margin-left: auto; margin-top: 8px; }
+  .lauks svg { width: 100%; height: auto; display: block; }
+
+  /* Hero atklāšanās: vienīgā animācija */
+  .atklajas { opacity: 0; transform: translateY(14px); animation: atklasana .8s ease forwards; }
+  .atklajas.v2 { animation-delay: .15s; }
+  .atklajas.v3 { animation-delay: .3s; }
+  .atklajas.v4 { animation-delay: .45s; }
+  @keyframes atklasana { to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .atklajas { animation: none; opacity: 1; transform: none; }
+    .poga { transition: none; }
+  }
+
+  /* Sadaļas */
+  section { padding: 76px 0; }
+  .linija-augsa { border-top: 1px solid rgba(34, 27, 20, .16); }
+  h2 {
+    font-family: var(--displejs);
+    font-weight: 600;
+    font-size: clamp(33px, 4.8vw, 54px);
+    line-height: 1.12;
+    letter-spacing: -.005em;
+    margin-bottom: 40px;
+    max-width: 18ch;
+  }
+
+  /* Tēmas */
+  .temu-rinda {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px 40px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(34, 27, 20, .16);
+  }
+  .temu-rinda:last-of-type { border-bottom: 1px solid rgba(34, 27, 20, .16); }
+  .temu-rinda h3 { font-family: var(--displejs); font-weight: 600; font-size: 29px; line-height: 1.2; }
+  .temu-rinda p { color: var(--pelni); font-size: 16px; max-width: 52ch; }
+  .temu-citats {
+    margin-top: 44px;
+    font-family: var(--displejs);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(23px, 3.2vw, 31px);
+    color: var(--tinte);
+    max-width: 26ch;
+  }
+  .temu-citats .punkts { color: var(--safrans); font-style: normal; }
+
+  /* Pakalpojumi */
+  .pakalpojumi-rezgis { display: grid; grid-template-columns: 1fr; gap: 44px 56px; }
+  .pakalpojums h3 { font-family: var(--displejs); font-weight: 600; font-size: 27px; margin-bottom: 10px; }
+  .pakalpojums p { color: var(--tinte); font-size: 16px; max-width: 50ch; }
+  .pakalpojums .meta {
+    margin-top: 12px;
+    font-size: 11.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--pelni);
+  }
+  .vietturis { color: var(--vietturis); font-size: 15px; }
+  .pakalpojumi-vietturis { margin-top: 48px; }
+
+  /* Par mani */
+  .par-mani { background: var(--tinte); color: var(--krems); }
+  .par-mani .uzacs { color: var(--pelni-gaisi); }
+  .par-mani-rezgis { display: grid; grid-template-columns: 1fr; gap: 44px; align-items: start; }
+  .par-mani h2 { color: var(--krems); margin-bottom: 28px; }
+  .par-mani h2 .punkts { color: var(--safrans); }
+  .par-mani p { margin-bottom: 18px; font-size: 16.5px; color: rgba(244, 237, 226, .92); max-width: 58ch; }
+  .fakti { list-style: none; margin-top: 34px; }
+  .fakti li {
+    padding: 12px 0;
+    border-top: 1px solid rgba(244, 237, 226, .18);
+    font-size: 14.5px;
+    color: var(--pelni-gaisi);
+  }
+  .portrets { max-width: 340px; }
+  .portrets img { width: 100%; }
+  .portrets figcaption { margin-top: 10px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--pelni-gaisi); }
+
+  /* Atsauksmes */
+  .atsauksmes { padding: 56px 0; }
+  .atsauksmes .vietturis { max-width: 52ch; }
+
+  /* Pieteikšanās */
+  .pieteiksanas { padding-bottom: 90px; }
+  .pieteiksanas h2 { max-width: 14ch; }
+  .pieteiksanas-rezgis { display: grid; grid-template-columns: 1fr; gap: 40px; }
+  .pieteiksanas-teksts p { max-width: 46ch; margin-bottom: 16px; }
+  .pieteiksanas-teksts .vietturis { margin-top: 8px; }
+  .adreses { list-style: none; }
+  .adreses li { padding: 14px 0; border-top: 1px solid rgba(34, 27, 20, .16); font-size: 16px; }
+  .adreses li:last-child { border-bottom: 1px solid rgba(34, 27, 20, .16); }
+  .adreses .birka {
+    display: block;
+    font-size: 11.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--pelni);
+    margin-bottom: 3px;
+  }
+  .adreses a { color: var(--tinte); text-decoration-color: var(--safrans); text-underline-offset: 3px; }
+  .adreses a:hover { color: var(--safrans); }
+
+  footer { padding: 26px 0 40px; border-top: 1px solid rgba(34, 27, 20, .16); }
+  footer p { font-size: 12.5px; color: var(--pelni); letter-spacing: .05em; }
+
+  /* Plašāki ekrāni */
+  @media (min-width: 760px) {
+    .varonis { padding: 92px 0 104px; }
+    .varonis-rezgis { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 40px; }
+    .lauks { width: min(100%, 360px); margin: 0 0 0 auto; }
+    .temu-rinda { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: baseline; padding: 26px 0; }
+    .temu-rinda h3 { font-size: 33px; }
+    .pakalpojumi-rezgis { grid-template-columns: 1fr 1fr; }
+    .par-mani-rezgis { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 64px; }
+    .portrets { margin-left: auto; }
+    .pieteiksanas-rezgis { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 64px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="josla">Melnraksts. Dizaina paraugs, ko sagatavoja rast studija.</div>
+
+<header class="galvene">
+  <div class="ietvars galvene-rinda">
+    <span class="zimols">Sanita Aišpure</span>
+    <nav class="izvelne" aria-label="Lapas sadaļas">
+      <a href="#temas">Tēmas</a>
+      <a href="#pakalpojumi">Pakalpojumi</a>
+      <a href="#par-mani">Par mani</a>
+      <a class="izcelts" href="#pieteiksanas">Pieteikties</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="varonis">
+    <div class="ietvars varonis-rezgis">
+      <div>
+        <p class="uzacs atklajas">Sanita Aišpure · Sertificēta klīniskā un veselības psiholoģe · Rīga</p>
+        <h1 class="atklajas v2">Ķermenis nes <em class="akcents">stāstu</em>, kas nav sācies ar&nbsp;Tevi.</h1>
+        <p class="varonis-apraksts atklajas v3">Sistēmiskie ģimenes sakārtojumi, konsultācijas 1:1 un grupas. Klātienē Rīgā vai tiešsaistē.</p>
+        <div class="varonis-darbibas atklajas v4">
+          <a class="poga" href="#pieteiksanas">Pieteikties konsultācijai</a>
+          <span class="varonis-meta">25 gadu prakse · latviski · angliski · krieviski</span>
+        </div>
+      </div>
+      <div class="lauks atklajas v3" aria-hidden="true">
+        <svg viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="186" y1="168" x2="66"  y2="84"  stroke="#221B14" stroke-opacity=".18"/>
+          <line x1="186" y1="168" x2="292" y2="76"  stroke="#221B14" stroke-opacity=".18"/>
+          <line x1="186" y1="168" x2="318" y2="196" stroke="#221B14" stroke-opacity=".18"/>
+          <line x1="186" y1="168" x2="252" y2="286" stroke="#221B14" stroke-opacity=".18"/>
+          <line x1="186" y1="168" x2="96"  y2="270" stroke="#221B14" stroke-opacity=".18"/>
+          <line x1="66"  y1="84"  x2="292" y2="76"  stroke="#221B14" stroke-opacity=".09"/>
+          <line x1="96"  y1="270" x2="252" y2="286" stroke="#221B14" stroke-opacity=".09"/>
+          <circle cx="66"  cy="84"  r="24" stroke="#221B14" stroke-opacity=".55"/>
+          <circle cx="292" cy="76"  r="15" stroke="#221B14" stroke-opacity=".55"/>
+          <circle cx="318" cy="196" r="9"  stroke="#221B14" stroke-opacity=".45"/>
+          <circle cx="252" cy="286" r="27" stroke="#221B14" stroke-opacity=".55"/>
+          <circle cx="96"  cy="270" r="13" stroke="#221B14" stroke-opacity=".45"/>
+          <circle cx="150" cy="52"  r="4"  fill="#221B14" fill-opacity=".3"/>
+          <circle cx="330" cy="132" r="4"  fill="#221B14" fill-opacity=".3"/>
+          <circle cx="170" cy="316" r="4"  fill="#221B14" fill-opacity=".3"/>
+          <circle cx="186" cy="168" r="17" fill="#B8541A"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="temas" class="linija-augsa">
+    <div class="ietvars">
+      <p class="uzacs">Tēmas</p>
+      <h2>Ar ko pie manis nāk</h2>
+      <div class="temu-rinda">
+        <h3>Psihotrauma</h3>
+        <p>Klīniskā un veselības psihologa pieredze, strādājot ar psihotraumu.</p>
+      </div>
+      <div class="temu-rinda">
+        <h3>Dzimtas stāsti</h3>
+        <p>Starppaaudžu stāsti sieviešu un vīriešu līnijā, kas ietekmē libido, auglību un spēju saņemt.</p>
+      </div>
+      <div class="temu-rinda">
+        <h3>Seksualitāte un libido</h3>
+        <p>Libido un dzīvības plūsmas bloķējumi. Seksualitāte atgriežas kā resurss, nevis spriedze vai kontrole.</p>
+      </div>
+      <div class="temu-rinda">
+        <h3>Auglība</h3>
+        <p>Auglības, neauglības, potences un paternitātes tēmas. Darbs ar psihogēno neauglību.</p>
+      </div>
+      <div class="temu-rinda">
+        <h3>Attiecības ar naudu</h3>
+        <p>Par Tavām attiecībām ar naudu un to, kas bremzē.</p>
+      </div>
+      <div class="temu-rinda">
+        <h3>Noslēpumi</h3>
+        <p>Tas, kas ķermenī ticis apspiests, mantots vai aizliegts. Noslēpumi, kas dzīvo ķermenī, nevis prātā.</p>
+      </div>
+      <p class="temu-citats"><span class="punkts">●</span> Simptoms nav kļūda, bet lojalitātes žests.</p>
+    </div>
+  </section>
+
+  <section id="pakalpojumi" class="linija-augsa">
+    <div class="ietvars">
+      <p class="uzacs">Pakalpojumi</p>
+      <h2>Konsultācijas un grupas</h2>
+      <div class="pakalpojumi-rezgis">
+        <article class="pakalpojums">
+          <h3>Konsultācijas 1:1</h3>
+          <p>Sistēmiskās konsultācijas 1:1 klātienē prakses telpās Latgales ielā 322, Rīgā, vai tiešsaistē.</p>
+          <p class="meta">1,5 stundas · latviski, angliski, krieviski</p>
+        </article>
+        <article class="pakalpojums">
+          <h3>Sistēmisko sakārtojumu grupas</h3>
+          <p>Grupas notiek Aston Hotel Rīga, pašā Rīgas sirdī. Pauzēs baudi terasi, sauli, vēju, debesis, ziedus, skatu.</p>
+          <p class="meta">Brīvības iela 48/50, 6. stāvs · klātienē</p>
+        </article>
+        <article class="pakalpojums">
+          <h3>Seksualitātes sistēmiskās grupas</h3>
+          <p>Manis radīti tematiskie sakārtojumi, kur kombinējas vecmātes un dūlas pieredze, klīniskā un veselības psihologa darbs ar psihotraumu un sistēmisko sakārtojumu prakse. Šis nav darbs ar „problēmu”. Tas ir darbs ar dzīvības atjaunošanu sistēmā.</p>
+          <p class="meta">Tematiskās sakārtojumu grupas · klātienē</p>
+        </article>
+        <article class="pakalpojums">
+          <h3>Naudas spēle</h3>
+          <p>Psiholoģiskā transformāciju spēle par Tavām attiecībām ar naudu un to, kas bremzē.</p>
+          <p class="meta">Grupā · Rīgā</p>
+        </article>
+        <article class="pakalpojums">
+          <h3>Psihometriskie testi</h3>
+          <p>TRIPOD testi, kas veidoti, balstoties uz mūsdienu organizāciju psiholoģijas atziņām un empīriskiem pētījumiem. Visi testi ir standartizēti un validēti Latvijā.</p>
+        </article>
+        <article class="pakalpojums">
+          <h3>Lekcijas un semināri</h3>
+          <p>Topošajiem kolēģiem, sistēmisko sakārtojumu praktiķiem, lasu lekcijas un vadu nodarbības. Semināri pedagogiem un komandām.</p>
+        </article>
+      </div>
+      <p class="vietturis pakalpojumi-vietturis">Šeit var norādīt cenas un tuvāko grupu datumus.</p>
+    </div>
+  </section>
+
+  <section id="par-mani" class="par-mani">
+    <div class="ietvars par-mani-rezgis">
+      <div>
+        <p class="uzacs">Par mani</p>
+        <h2>Bāka<span class="punkts">.</span> Ķirurgs<span class="punkts">.</span> Mūza<span class="punkts">.</span></h2>
+        <p>Esmu sertificēta klīniskā un veselības psiholoģe un pārraudze. 25 gadu prakses pieredze: medicīnā, psihiatrijā, dažādās ekspertīžu komisijās un psiholoģiskajās izpētēs. Stacionārajās tiesu ekspertīzēs, veselības un darbaspēju ekspertīzēs, pedagoģiski medicīniskajās, militārajās.</p>
+        <p>Berta Hellingera sistēmfenomenoloģijas metodes apguve kļuva dzīvi mainoša: ģimenes sistēmiskie sakārtojumi, sistēmiskais koučings un organizāciju sistēmiskie risinājumi. To izmantoju, individuāli konsultējot 1:1 savā privātpraksē. Vadu arī sistēmisko sakārtojumu grupas un tematiskās grupas par seksualitāti un naudu.</p>
+        <p>Manā pieredzē ir arī vecmātes studijas, dūlas pieredze, grūtnieču un dzemdību atbalstīšana un darbs ar psihogēno neauglību.</p>
+        <ul class="fakti">
+          <li>Maģistra grāds psiholoģijā ar specializāciju klīniskajā psiholoģijā, Latvijas Universitāte, 2002</li>
+          <li>Psiholoģijas skolotāja kvalifikācija, Latvijas Universitāte, 2001</li>
+          <li>Izbijusi sertificēta Eiropas aviācijas psiholoģe (EAAP)</li>
+          <li>Latvijas Klīnisko psihologu asociācijas biedre</li>
+        </ul>
+      </div>
+      <figure class="portrets">
+        <img src="portrets.webp" alt="Sanita Aišpure" width="382" height="742" loading="lazy">
+        <figcaption>Sanita Aišpure</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="atsauksmes">
+    <div class="ietvars">
+      <p class="uzacs">Atsauksmes</p>
+      <p class="vietturis">Šeit var ielikt dalībnieku atsauksmes no Instagram izceltajiem stāstiem.</p>
+    </div>
+  </section>
+
+  <section id="pieteiksanas" class="pieteiksanas linija-augsa">
+    <div class="ietvars">
+      <p class="uzacs">Pieteikšanās</p>
+      <div class="pieteiksanas-rezgis">
+        <div class="pieteiksanas-teksts">
+          <h2>Raksti, ja atsaucas<span style="color: var(--safrans)">.</span></h2>
+          <p>Jaunais 1:1 pieraksts no 2026. gada septembra.</p>
+          <p class="vietturis">Šeit būs pieteikšanās poga: saite uz ziņu Instagram, WhatsApp vai pieteikuma formu.</p>
+        </div>
+        <ul class="adreses">
+          <li>
+            <span class="birka">Prakse</span>
+            Latgales iela 322, Rīga
+          </li>
+          <li>
+            <span class="birka">Grupas</span>
+            Aston Hotel Rīga, Brīvības iela 48/50
+          </li>
+          <li>
+            <span class="birka">Instagram</span>
+            <a href="https://www.instagram.com/aispure.psihologs/" rel="noopener">@aispure.psihologs</a>
+          </li>
+          <li>
+            <span class="birka">Facebook</span>
+            <a href="https://www.facebook.com/aispure.psihologs/" rel="noopener">Sanitas Aišpures prakse</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="ietvars">
+    <p>Melnraksts. Dizaina paraugs, ko sagatavoja rast studija.</p>
+  </div>
+</footer>
+
+</body>
+</html>
