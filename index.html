@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="lv">
+<html lang="lv" data-palete="tinte" data-fonti="cormorant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>Sanita Aišpure · Sistēmiskie sakārtojumi un konsultācijas Rīgā</title>
 <meta name="description" content="Sertificētas klīniskās un veselības psiholoģes Sanitas Aišpures prakse: sistēmiskie ģimenes sakārtojumi, konsultācijas 1:1 un grupas Rīgā.">
@@ -15,94 +15,195 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#221B14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23221B14'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23B8541A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500..700;1,500..700&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link id="fonts-cormorant" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500..700;1,500..700&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script>
+  window.SA_FONTI = {
+    cormorant: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500..700;1,500..700&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap",
+    playfair:  "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500..700;1,500..700&family=Inter:wght@400;500;600&display=swap",
+    bodoni:     "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..700;1,6..96,500..700&family=Manrope:wght@400;500;600&display=swap",
+    instrument: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&display=swap",
+    garamond:   "https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500..700;1,500..700&family=Poppins:ital,wght@0,400;0,500;1,400&display=swap"
+  };
+  (function () {
+    try {
+      var d = document.documentElement;
+      var p = localStorage.getItem("sa-palete");
+      var f = localStorage.getItem("sa-fonti");
+      if (p) d.setAttribute("data-palete", p);
+      if (f && window.SA_FONTI[f]) {
+        d.setAttribute("data-fonti", f);
+        if (f !== "cormorant" && !document.getElementById("fonts-" + f)) {
+          var l = document.createElement("link");
+          l.rel = "stylesheet"; l.id = "fonts-" + f; l.href = window.SA_FONTI[f];
+          document.head.appendChild(l);
+        }
+      }
+    } catch (e) {}
+  })();
+</script>
 <style>
+  /* ---- Paletes ---- */
   :root {
-    --krems: #F4EDE2;
-    --tinte: #221B14;
-    --safrans: #B8541A;
+    --fons: #F4EDE2;
+    --teksts: #221B14;
+    --virsma: #221B14;
+    --virsma-teksts: #F4EDE2;
+    --akcents: #B8541A;
+    --akcents-virsma: #E08A45;
     --pelni: #7C7060;
-    --pelni-gaisi: #B9AFA2;
-    --vietturis: rgba(34, 27, 20, .45);
-    --displejs: 'Cormorant Garamond', serif;
-    --teksts: 'Work Sans', sans-serif;
+    --pelni-virsma: #B9AFA2;
+
+    --displejs: 'Cormorant Garamond', Georgia, serif;
+    --teksta-fonts: 'Work Sans', system-ui, sans-serif;
+    --displeja-svars: 600;
+    --mers: 1;
+    --teksta-mers: 1;
   }
+  html[data-palete="melna"] {
+    --fons: #F1EDE4; --teksts: #111110; --virsma: #111110; --virsma-teksts: #F1EDE4;
+    --akcents: #CE5F1B; --akcents-virsma: #E8873C; --pelni: #6E6A62; --pelni-virsma: #AEA9A0;
+  }
+  html[data-palete="kakao"] {
+    --fons: #F0E7D9; --teksts: #3D2A1C; --virsma: #3D2A1C; --virsma-teksts: #F6EEE2;
+    --akcents: #BE6420; --akcents-virsma: #E29A55; --pelni: #8A7360; --pelni-virsma: #C7B6A2;
+  }
+  html[data-palete="terakota"] {
+    --fons: #F6EDE1; --teksts: #2E211A; --virsma: #6F2E14; --virsma-teksts: #FBEEE1;
+    --akcents: #C05A21; --akcents-virsma: #F3B27A; --pelni: #85735F; --pelni-virsma: #E7C3A6;
+  }
+  html[data-palete="vakars"] {
+    --fons: #14100D; --teksts: #F0E5D6; --virsma: #F0E5D6; --virsma-teksts: #17120E;
+    --akcents: #E4823C; --akcents-virsma: #B8541A; --pelni: #A2968A; --pelni-virsma: #6B5A48;
+  }
+
+  /* ---- Fontu komplekti ---- */
+  html[data-fonti="playfair"] {
+    --displejs: 'Playfair Display', Georgia, serif; --teksta-fonts: 'Inter', system-ui, sans-serif;
+    --displeja-svars: 600; --mers: .9; --teksta-mers: .97;
+  }
+  html[data-fonti="bodoni"] {
+    --displejs: 'Bodoni Moda', Georgia, serif; --teksta-fonts: 'Manrope', system-ui, sans-serif;
+    --displeja-svars: 500; --mers: .92; --teksta-mers: .97;
+  }
+  html[data-fonti="instrument"] {
+    --displejs: 'Instrument Serif', Georgia, serif; --teksta-fonts: 'Archivo', system-ui, sans-serif;
+    --displeja-svars: 400; --mers: 1.04; --teksta-mers: .96;
+  }
+  html[data-fonti="garamond"] {
+    --displejs: 'EB Garamond', Georgia, serif; --teksta-fonts: 'Poppins', system-ui, sans-serif;
+    --displeja-svars: 600; --mers: .98; --teksta-mers: .94;
+  }
+
+  /* ---- Atvasinātās krāsas ---- */
+  :root {
+    --linija: color-mix(in srgb, var(--teksts) 16%, transparent);
+    --linija-virsma: color-mix(in srgb, var(--virsma-teksts) 20%, transparent);
+    --vietturis: color-mix(in srgb, var(--teksts) 46%, transparent);
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   img { max-width: 100%; height: auto; display: block; }
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    background: var(--fons);
+  }
   body {
-    font-family: var(--teksts);
-    background: var(--krems);
-    color: var(--tinte);
-    font-size: 17px;
-    line-height: 1.6;
+    font-family: var(--teksta-fonts);
+    background: var(--fons);
+    color: var(--teksts);
+    font-size: calc(16.5px * var(--teksta-mers));
+    line-height: 1.62;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
   a { color: inherit; }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--safrans); outline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--akcents); outline-offset: 3px; }
+  section[id] { scroll-margin-top: 16px; }
 
   .josla {
-    background: var(--tinte);
-    color: var(--krems);
-    font-size: 12px;
-    letter-spacing: .08em;
-    text-align: center;
-    padding: 9px 16px;
+    background: var(--virsma);
+    color: var(--virsma-teksts);
+    font-size: 11.5px;
+    letter-spacing: .05em;
+    line-height: 1.5;
+    text-align: left;
+    padding: 11px 122px 11px 18px;
   }
 
   .ietvars { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
 
+  /* ---- Galvene ---- */
   header.galvene { padding: 22px 0 0; }
-  .galvene-rinda { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  .zimols { font-family: var(--displejs); font-weight: 700; font-size: 23px; text-decoration: none; letter-spacing: .01em; }
-  nav.izvelne { display: flex; gap: 22px; align-items: baseline; }
-  nav.izvelne a { text-decoration: none; font-size: 14px; letter-spacing: .04em; color: var(--pelni); }
-  nav.izvelne a:hover { color: var(--tinte); }
-  nav.izvelne a.izcelts { color: var(--tinte); border-bottom: 2px solid var(--safrans); padding-bottom: 2px; }
+  .galvene-rinda { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .zimols { font-family: var(--displejs); font-weight: var(--displeja-svars); font-size: 22px; letter-spacing: .01em; }
+  nav.izvelne { display: flex; gap: 18px; align-items: baseline; flex-wrap: wrap; width: 100%; margin-top: 6px; }
+  nav.izvelne a {
+    text-decoration: none; font-size: 13.5px; letter-spacing: .03em;
+    color: var(--pelni); padding: 8px 0; display: inline-block;
+  }
+  nav.izvelne a:hover { color: var(--teksts); }
+  nav.izvelne a.izcelts { color: var(--teksts); border-bottom: 2px solid var(--akcents); }
 
   .uzacs {
-    font-size: 12px;
+    font-size: 11.5px;
     letter-spacing: .18em;
     text-transform: uppercase;
     color: var(--pelni);
-    margin-bottom: 18px;
+    margin-bottom: 16px;
   }
 
-  /* Hero */
-  .varonis { padding: 64px 0 72px; position: relative; }
-  .varonis-rezgis { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: center; }
+  /* ---- Hero ---- */
+  .varonis { padding: 40px 0 56px; }
+  .varonis-rezgis { display: grid; grid-template-columns: 1fr; gap: 34px; align-items: center; }
   .varonis h1 {
     font-family: var(--displejs);
-    font-weight: 600;
-    font-size: clamp(44px, 7.8vw, 94px);
-    line-height: 1.02;
+    font-weight: var(--displeja-svars);
+    font-size: calc(clamp(45px, 11.4vw, 58px) * var(--mers));
+    line-height: 1.04;
     letter-spacing: -.005em;
-    max-width: 13ch;
+    max-width: 14ch;
+    text-wrap: balance;
   }
-  .varonis h1 .akcents { font-style: italic; font-weight: 600; color: var(--safrans); }
-  .varonis-apraksts { margin-top: 26px; font-size: 19px; max-width: 44ch; color: var(--tinte); }
-  .varonis-darbibas { margin-top: 34px; display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+  .varonis h1 .akcents { font-style: italic; color: var(--akcents); }
+  .varonis-apraksts { margin-top: 22px; font-size: 1.06rem; max-width: 44ch; }
+  .varonis-darbibas { margin-top: 30px; }
   .poga {
     display: inline-block;
-    background: var(--tinte);
-    color: var(--krems);
+    background: var(--teksts);
+    color: var(--fons);
     text-decoration: none;
-    font-size: 15px;
+    font-size: 14.5px;
     font-weight: 500;
-    letter-spacing: .03em;
-    padding: 15px 30px;
+    letter-spacing: .05em;
+    padding: 17px 32px;
     border-radius: 2px;
     transition: background-color .25s ease;
   }
-  .poga:hover { background: var(--safrans); }
-  .varonis-meta { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--pelni); }
+  .poga:hover { background: var(--akcents); color: #fff; }
 
-  .lauks { width: 210px; margin-left: auto; margin-top: 8px; }
+  .varonis-sana { display: flex; flex-direction: column; gap: 22px; }
+  .lauks { width: min(72%, 260px); }
   .lauks svg { width: 100%; height: auto; display: block; }
+  .lauks svg .lin { stroke: var(--teksts); }
+  .lauks svg .apl { stroke: var(--teksts); }
+  .lauks svg .pkt { fill: var(--teksts); }
+  .lauks svg .centrs { fill: var(--akcents); }
 
-  /* Hero atklāšanās: vienīgā animācija */
+  .varonis-fakti { list-style: none; }
+  .varonis-fakti li {
+    font-size: 11px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--pelni);
+    line-height: 1.9;
+  }
+
+  /* Hero atklāšanās: vienīgā satura animācija */
   .atklajas { opacity: 0; transform: translateY(14px); animation: atklasana .8s ease forwards; }
   .atklajas.v2 { animation-delay: .15s; }
   .atklajas.v3 { animation-delay: .3s; }
@@ -111,114 +212,228 @@
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .atklajas { animation: none; opacity: 1; transform: none; }
-    .poga { transition: none; }
+    .poga, .dizains-poga, .dizains-birka { transition: none; }
   }
 
-  /* Sadaļas */
-  section { padding: 76px 0; }
-  .linija-augsa { border-top: 1px solid rgba(34, 27, 20, .16); }
+  /* ---- Sadaļas ---- */
+  section { padding: 56px 0; }
+  .linija-augsa { border-top: 1px solid var(--linija); }
   h2 {
     font-family: var(--displejs);
-    font-weight: 600;
-    font-size: clamp(33px, 4.8vw, 54px);
+    font-weight: var(--displeja-svars);
+    font-size: calc(clamp(31px, 7vw, 54px) * var(--mers));
     line-height: 1.12;
     letter-spacing: -.005em;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
     max-width: 18ch;
+    text-wrap: balance;
   }
+  h2 .punkts { color: var(--akcents); }
 
-  /* Tēmas */
+  /* ---- Tēmas ---- */
   .temu-rinda {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 6px 40px;
-    padding: 20px 0;
-    border-top: 1px solid rgba(34, 27, 20, .16);
+    gap: 4px 40px;
+    padding: 18px 0;
+    border-top: 1px solid var(--linija);
   }
-  .temu-rinda:last-of-type { border-bottom: 1px solid rgba(34, 27, 20, .16); }
-  .temu-rinda h3 { font-family: var(--displejs); font-weight: 600; font-size: 29px; line-height: 1.2; }
-  .temu-rinda p { color: var(--pelni); font-size: 16px; max-width: 52ch; }
+  .temu-rinda:last-of-type { border-bottom: 1px solid var(--linija); }
+  .temu-rinda h3 { font-family: var(--displejs); font-weight: var(--displeja-svars); font-size: calc(27px * var(--mers)); line-height: 1.2; }
+  .temu-rinda p { color: var(--pelni); font-size: .95rem; max-width: 52ch; }
   .temu-citats {
-    margin-top: 44px;
+    margin-top: 40px;
+    padding-left: 20px;
+    border-left: 2px solid var(--akcents);
     font-family: var(--displejs);
     font-style: italic;
     font-weight: 500;
-    font-size: clamp(23px, 3.2vw, 31px);
-    color: var(--tinte);
+    font-size: calc(clamp(22px, 5.4vw, 31px) * var(--mers));
+    line-height: 1.3;
     max-width: 26ch;
   }
-  .temu-citats .punkts { color: var(--safrans); font-style: normal; }
 
-  /* Pakalpojumi */
-  .pakalpojumi-rezgis { display: grid; grid-template-columns: 1fr; gap: 44px 56px; }
-  .pakalpojums h3 { font-family: var(--displejs); font-weight: 600; font-size: 27px; margin-bottom: 10px; }
-  .pakalpojums p { color: var(--tinte); font-size: 16px; max-width: 50ch; }
+  /* ---- Pakalpojumi ---- */
+  .pakalpojumi-rezgis { display: grid; grid-template-columns: 1fr; gap: 36px 56px; }
+  .pakalpojums h3 { font-family: var(--displejs); font-weight: var(--displeja-svars); font-size: calc(25px * var(--mers)); margin-bottom: 8px; line-height: 1.25; }
+  .pakalpojums p { font-size: .95rem; max-width: 50ch; }
   .pakalpojums .meta {
-    margin-top: 12px;
-    font-size: 11.5px;
-    letter-spacing: .14em;
+    margin-top: 10px;
+    font-size: 11px;
+    letter-spacing: .13em;
     text-transform: uppercase;
     color: var(--pelni);
+    line-height: 1.7;
   }
-  .vietturis { color: var(--vietturis); font-size: 15px; }
-  .pakalpojumi-vietturis { margin-top: 48px; }
+  .vietturis { color: var(--vietturis); font-size: .92rem; }
+  .pakalpojumi-vietturis { margin-top: 40px; }
 
-  /* Par mani */
-  .par-mani { background: var(--tinte); color: var(--krems); }
-  .par-mani .uzacs { color: var(--pelni-gaisi); }
-  .par-mani-rezgis { display: grid; grid-template-columns: 1fr; gap: 44px; align-items: start; }
-  .par-mani h2 { color: var(--krems); margin-bottom: 28px; }
-  .par-mani h2 .punkts { color: var(--safrans); }
-  .par-mani p { margin-bottom: 18px; font-size: 16.5px; color: rgba(244, 237, 226, .92); max-width: 58ch; }
-  .fakti { list-style: none; margin-top: 34px; }
+  /* ---- Par mani ---- */
+  .par-mani { background: var(--virsma); color: var(--virsma-teksts); }
+  .par-mani .uzacs { color: var(--pelni-virsma); }
+  .par-mani-rezgis { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: start; }
+  .par-mani h2 { color: var(--virsma-teksts); margin-bottom: 24px; }
+  .par-mani h2 .punkts { color: var(--akcents-virsma); }
+  .par-mani p { margin-bottom: 16px; font-size: .98rem; color: color-mix(in srgb, var(--virsma-teksts) 92%, transparent); max-width: 58ch; }
+  .fakti { list-style: none; margin-top: 30px; }
   .fakti li {
     padding: 12px 0;
-    border-top: 1px solid rgba(244, 237, 226, .18);
-    font-size: 14.5px;
-    color: var(--pelni-gaisi);
+    border-top: 1px solid var(--linija-virsma);
+    font-size: .87rem;
+    line-height: 1.55;
+    color: var(--pelni-virsma);
   }
   .portrets { max-width: 340px; }
   .portrets img { width: 100%; }
-  .portrets figcaption { margin-top: 10px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--pelni-gaisi); }
+  .portrets figcaption { margin-top: 10px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--pelni-virsma); }
 
-  /* Atsauksmes */
-  .atsauksmes { padding: 56px 0; }
+  /* ---- Atsauksmes ---- */
+  .atsauksmes { padding: 46px 0; }
   .atsauksmes .vietturis { max-width: 52ch; }
 
-  /* Pieteikšanās */
-  .pieteiksanas { padding-bottom: 90px; }
+  /* ---- Pieteikšanās ---- */
+  .pieteiksanas { padding-bottom: 70px; }
   .pieteiksanas h2 { max-width: 14ch; }
-  .pieteiksanas-rezgis { display: grid; grid-template-columns: 1fr; gap: 40px; }
-  .pieteiksanas-teksts p { max-width: 46ch; margin-bottom: 16px; }
-  .pieteiksanas-teksts .vietturis { margin-top: 8px; }
+  .pieteiksanas-rezgis { display: grid; grid-template-columns: 1fr; gap: 32px; }
+  .pieteiksanas-teksts p { max-width: 46ch; margin-bottom: 14px; }
+  .pieteiksanas-teksts .vietturis { margin-top: 6px; }
   .adreses { list-style: none; }
-  .adreses li { padding: 14px 0; border-top: 1px solid rgba(34, 27, 20, .16); font-size: 16px; }
-  .adreses li:last-child { border-bottom: 1px solid rgba(34, 27, 20, .16); }
+  .adreses li { padding: 14px 0; border-top: 1px solid var(--linija); font-size: .97rem; }
+  .adreses li:last-child { border-bottom: 1px solid var(--linija); }
   .adreses .birka {
     display: block;
-    font-size: 11.5px;
+    font-size: 11px;
     letter-spacing: .14em;
     text-transform: uppercase;
     color: var(--pelni);
-    margin-bottom: 3px;
+    margin-bottom: 2px;
   }
-  .adreses a { color: var(--tinte); text-decoration-color: var(--safrans); text-underline-offset: 3px; }
-  .adreses a:hover { color: var(--safrans); }
+  .adreses a {
+    display: inline-block; padding: 7px 0; margin: -7px 0;
+    text-decoration-color: var(--akcents); text-underline-offset: 3px;
+  }
+  .adreses a:hover { color: var(--akcents); }
 
-  footer { padding: 26px 0 40px; border-top: 1px solid rgba(34, 27, 20, .16); }
-  footer p { font-size: 12.5px; color: var(--pelni); letter-spacing: .05em; }
+  footer { padding: 24px 0 34px; border-top: 1px solid var(--linija); }
+  footer p { font-size: 12px; color: var(--pelni); letter-spacing: .04em; }
 
-  /* Plašāki ekrāni */
+  /* ---- Dizaina izvēle ---- */
+  .dizains-poga {
+    position: fixed;
+    top: calc(9px + env(safe-area-inset-top));
+    right: calc(10px + env(safe-area-inset-right));
+    z-index: 60;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    height: 38px;
+    padding: 0 14px 0 11px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--fons);
+    color: var(--teksts);
+    font-family: var(--teksta-fonts);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .22), 0 0 0 1px var(--linija);
+    transition: padding .2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .dizains-birka {
+    display: inline-block; overflow: hidden; vertical-align: middle;
+    max-width: 90px; opacity: 1;
+    transition: max-width .2s ease, opacity .2s ease;
+  }
+  .dizains-poga[data-mazs] { padding: 0 11px; gap: 0; }
+  .dizains-poga[data-mazs] .dizains-birka { max-width: 0; opacity: 0; }
+  .dizains-punkti { display: inline-flex; gap: 3px; flex: 0 0 auto; }
+  .dizains-punkti i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 1px color-mix(in srgb, var(--teksts) 30%, transparent); }
+
+  .dizains-panelis {
+    position: fixed;
+    z-index: 61;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    max-height: 78vh;
+    overflow-y: auto;
+    display: block;
+    background: var(--fons);
+    color: var(--teksts);
+    border: 1px solid var(--linija);
+    border-radius: 14px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .3);
+    padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
+  }
+  .dizains-panelis[hidden] { display: none; }
+  .dp-galva { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .dp-virsraksts { font-family: var(--displejs); font-weight: var(--displeja-svars); font-size: 20px; line-height: 1.2; }
+  .dp-aizvert {
+    border: 0; background: none; color: var(--pelni); cursor: pointer;
+    font-size: 20px; line-height: 1; width: 34px; height: 34px; border-radius: 50%;
+  }
+  .dp-aizvert:hover { color: var(--teksts); }
+  .dp-birka {
+    font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--pelni); margin: 12px 0 6px;
+  }
+  .dp-birka:first-of-type { margin-top: 0; }
+  .dp-izvele { display: flex; flex-direction: column; gap: 2px; }
+  .dp-poga {
+    display: flex; align-items: center; gap: 11px; width: 100%;
+    background: none; border: 1px solid transparent; border-radius: 8px;
+    padding: 8px 10px; cursor: pointer; text-align: left;
+    color: var(--teksts); font-family: var(--teksta-fonts); font-size: 14px;
+  }
+  .dp-poga:hover { border-color: var(--linija); }
+  .dp-poga[aria-pressed="true"] { border-color: var(--akcents); background: color-mix(in srgb, var(--akcents) 8%, transparent); }
+  .dp-paraugi { display: inline-flex; gap: 4px; flex: 0 0 auto; }
+  .dp-paraugi i { width: 17px; height: 17px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 1px color-mix(in srgb, var(--teksts) 30%, transparent); }
+  .dp-fonta-nosaukums { display: flex; flex-direction: column; line-height: 1.25; }
+  .dp-fonta-nosaukums b { font-weight: 600; font-size: 17.5px; }
+  .dp-fonta-nosaukums span { font-size: 11px; letter-spacing: .06em; color: var(--pelni); }
+  .dp-piezime { margin-top: 13px; font-size: 11px; line-height: 1.5; color: var(--pelni); }
+
+  /* ---- Plašāki ekrāni ---- */
   @media (min-width: 760px) {
-    .varonis { padding: 92px 0 104px; }
-    .varonis-rezgis { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 40px; }
-    .lauks { width: min(100%, 360px); margin: 0 0 0 auto; }
-    .temu-rinda { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: baseline; padding: 26px 0; }
-    .temu-rinda h3 { font-size: 33px; }
-    .pakalpojumi-rezgis { grid-template-columns: 1fr 1fr; }
+    body { font-size: calc(17px * var(--teksta-mers)); }
+    .josla { text-align: center; padding: 10px 170px; font-size: 12px; }
+    header.galvene { padding: 26px 0 0; }
+    .zimols { font-size: 24px; }
+    nav.izvelne { width: auto; margin-top: 0; gap: 24px; }
+    nav.izvelne a { font-size: 14px; padding: 0; }
+    .varonis { padding: 76px 0 96px; }
+    .varonis h1 { font-size: calc(clamp(56px, 6.6vw, 92px) * var(--mers)); }
+    .varonis-rezgis { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 48px; }
+    .varonis-apraksts { font-size: 1.12rem; }
+    .varonis-sana { align-items: flex-end; text-align: right; gap: 26px; }
+    .lauks { width: min(100%, 340px); }
+    .varonis-fakti li { font-size: 11.5px; }
+    section { padding: 76px 0; }
+    h2 { margin-bottom: 40px; }
+    .temu-rinda { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: baseline; padding: 26px 0; gap: 6px 40px; }
+    .temu-rinda h3 { font-size: calc(32px * var(--mers)); }
+    .temu-citats { margin-top: 48px; padding-left: 26px; }
+    .pakalpojumi-rezgis { grid-template-columns: 1fr 1fr; gap: 44px 56px; }
+    .pakalpojums h3 { font-size: calc(27px * var(--mers)); }
     .par-mani-rezgis { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 64px; }
+    .par-mani h2 { margin-bottom: 28px; }
     .portrets { margin-left: auto; }
+    .atsauksmes { padding: 56px 0; }
+    .pieteiksanas { padding-bottom: 90px; }
     .pieteiksanas-rezgis { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 64px; }
+    footer { padding: 26px 0 40px; }
+
+    .dizains-poga { top: calc(11px + env(safe-area-inset-top)); right: 14px; height: 40px; font-size: 11px; }
+    .dizains-panelis {
+      left: auto; right: 14px; bottom: auto; top: 60px;
+      width: 340px; max-height: calc(100vh - 80px);
+      border-radius: 10px; padding: 18px;
+    }
   }
 </style>
 </head>
@@ -242,33 +457,39 @@
   <section class="varonis">
     <div class="ietvars varonis-rezgis">
       <div>
-        <p class="uzacs atklajas">Sanita Aišpure · Sertificēta klīniskā un veselības psiholoģe · Rīga</p>
+        <p class="uzacs atklajas">Sistēmiskie sakārtojumi · Rīga</p>
         <h1 class="atklajas v2">Ķermenis nes <em class="akcents">stāstu</em>, kas nav sācies ar&nbsp;Tevi.</h1>
         <p class="varonis-apraksts atklajas v3">Sistēmiskie ģimenes sakārtojumi, konsultācijas 1:1 un grupas. Klātienē Rīgā vai tiešsaistē.</p>
         <div class="varonis-darbibas atklajas v4">
           <a class="poga" href="#pieteiksanas">Pieteikties konsultācijai</a>
-          <span class="varonis-meta">25 gadu prakse · latviski · angliski · krieviski</span>
         </div>
       </div>
-      <div class="lauks atklajas v3" aria-hidden="true">
-        <svg viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="186" y1="168" x2="66"  y2="84"  stroke="#221B14" stroke-opacity=".18"/>
-          <line x1="186" y1="168" x2="292" y2="76"  stroke="#221B14" stroke-opacity=".18"/>
-          <line x1="186" y1="168" x2="318" y2="196" stroke="#221B14" stroke-opacity=".18"/>
-          <line x1="186" y1="168" x2="252" y2="286" stroke="#221B14" stroke-opacity=".18"/>
-          <line x1="186" y1="168" x2="96"  y2="270" stroke="#221B14" stroke-opacity=".18"/>
-          <line x1="66"  y1="84"  x2="292" y2="76"  stroke="#221B14" stroke-opacity=".09"/>
-          <line x1="96"  y1="270" x2="252" y2="286" stroke="#221B14" stroke-opacity=".09"/>
-          <circle cx="66"  cy="84"  r="24" stroke="#221B14" stroke-opacity=".55"/>
-          <circle cx="292" cy="76"  r="15" stroke="#221B14" stroke-opacity=".55"/>
-          <circle cx="318" cy="196" r="9"  stroke="#221B14" stroke-opacity=".45"/>
-          <circle cx="252" cy="286" r="27" stroke="#221B14" stroke-opacity=".55"/>
-          <circle cx="96"  cy="270" r="13" stroke="#221B14" stroke-opacity=".45"/>
-          <circle cx="150" cy="52"  r="4"  fill="#221B14" fill-opacity=".3"/>
-          <circle cx="330" cy="132" r="4"  fill="#221B14" fill-opacity=".3"/>
-          <circle cx="170" cy="316" r="4"  fill="#221B14" fill-opacity=".3"/>
-          <circle cx="186" cy="168" r="17" fill="#B8541A"/>
-        </svg>
+      <div class="varonis-sana">
+        <div class="lauks atklajas v3" aria-hidden="true">
+          <svg viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line class="lin" x1="186" y1="168" x2="66"  y2="84"  stroke-opacity=".18"/>
+            <line class="lin" x1="186" y1="168" x2="292" y2="76"  stroke-opacity=".18"/>
+            <line class="lin" x1="186" y1="168" x2="318" y2="196" stroke-opacity=".18"/>
+            <line class="lin" x1="186" y1="168" x2="252" y2="286" stroke-opacity=".18"/>
+            <line class="lin" x1="186" y1="168" x2="96"  y2="270" stroke-opacity=".18"/>
+            <line class="lin" x1="66"  y1="84"  x2="292" y2="76"  stroke-opacity=".09"/>
+            <line class="lin" x1="96"  y1="270" x2="252" y2="286" stroke-opacity=".09"/>
+            <circle class="apl" cx="66"  cy="84"  r="24" stroke-opacity=".55"/>
+            <circle class="apl" cx="292" cy="76"  r="15" stroke-opacity=".55"/>
+            <circle class="apl" cx="318" cy="196" r="9"  stroke-opacity=".45"/>
+            <circle class="apl" cx="252" cy="286" r="27" stroke-opacity=".55"/>
+            <circle class="apl" cx="96"  cy="270" r="13" stroke-opacity=".45"/>
+            <circle class="pkt" cx="150" cy="52"  r="4"  fill-opacity=".3"/>
+            <circle class="pkt" cx="330" cy="132" r="4"  fill-opacity=".3"/>
+            <circle class="pkt" cx="170" cy="316" r="4"  fill-opacity=".3"/>
+            <circle class="centrs" cx="186" cy="168" r="17"/>
+          </svg>
+        </div>
+        <ul class="varonis-fakti atklajas v4">
+          <li>Sertificēta klīniskā un veselības psiholoģe</li>
+          <li>25 gadu prakse</li>
+          <li>Latviski · angliski · krieviski</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -301,7 +522,7 @@
         <h3>Noslēpumi</h3>
         <p>Tas, kas ķermenī ticis apspiests, mantots vai aizliegts. Noslēpumi, kas dzīvo ķermenī, nevis prātā.</p>
       </div>
-      <p class="temu-citats"><span class="punkts">●</span> Simptoms nav kļūda, bet lojalitātes žests.</p>
+      <p class="temu-citats">Simptoms nav kļūda, bet lojalitātes žests.</p>
     </div>
   </section>
 
@@ -377,7 +598,7 @@
       <p class="uzacs">Pieteikšanās</p>
       <div class="pieteiksanas-rezgis">
         <div class="pieteiksanas-teksts">
-          <h2>Raksti, ja atsaucas<span style="color: var(--safrans)">.</span></h2>
+          <h2>Raksti, ja atsaucas<span class="punkts">.</span></h2>
           <p>Jaunais 1:1 pieraksts no 2026. gada septembra.</p>
           <p class="vietturis">Šeit būs pieteikšanās poga: saite uz ziņu Instagram, WhatsApp vai pieteikuma formu.</p>
         </div>
@@ -409,6 +630,158 @@
     <p>Melnraksts. Dizaina paraugs, ko sagatavoja rast studija.</p>
   </div>
 </footer>
+
+<button class="dizains-poga" id="dizains-poga" aria-expanded="false" aria-controls="dizains-panelis">
+  <span class="dizains-punkti" id="dizains-punkti" aria-hidden="true"></span>
+  <span class="dizains-birka">Dizains</span>
+</button>
+
+<div class="dizains-panelis" id="dizains-panelis" role="dialog" aria-label="Dizaina izvēle" hidden>
+  <div class="dp-galva">
+    <p class="dp-virsraksts">Izvēlies dizainu</p>
+    <button class="dp-aizvert" id="dp-aizvert" aria-label="Aizvērt izvēli">✕</button>
+  </div>
+
+  <p class="dp-birka">Krāsas</p>
+  <div class="dp-izvele" id="dp-paletes"></div>
+
+  <p class="dp-birka">Fonti</p>
+  <div class="dp-izvele" id="dp-fonti"></div>
+
+  <p class="dp-piezime">Izvēle saglabājas šajā ierīcē. Gatavajā lapā šīs pogas nebūs.</p>
+</div>
+
+<script>
+(function () {
+  var html = document.documentElement;
+  var poga = document.getElementById("dizains-poga");
+  var panelis = document.getElementById("dizains-panelis");
+  var punkti = document.getElementById("dizains-punkti");
+
+  var PALETES = [
+    { id: "tinte",    nosaukums: "Krēms un tinte", krasas: ["#F4EDE2", "#221B14", "#B8541A"] },
+    { id: "melna",    nosaukums: "Melns un smiltis", krasas: ["#F1EDE4", "#111110", "#CE5F1B"] },
+    { id: "kakao",    nosaukums: "Kakao", krasas: ["#F0E7D9", "#3D2A1C", "#BE6420"] },
+    { id: "terakota", nosaukums: "Terakota", krasas: ["#F6EDE1", "#6F2E14", "#C05A21"] },
+    { id: "vakars",   nosaukums: "Vakars", krasas: ["#14100D", "#F0E5D6", "#E4823C"] }
+  ];
+
+  var FONTI = [
+    { id: "cormorant", displejs: "Cormorant Garamond", teksts: "Work Sans" },
+    { id: "playfair",  displejs: "Playfair Display",   teksts: "Inter" },
+    { id: "bodoni",     displejs: "Bodoni Moda",      teksts: "Manrope" },
+    { id: "instrument", displejs: "Instrument Serif", teksts: "Archivo" },
+    { id: "garamond",   displejs: "EB Garamond",      teksts: "Poppins" }
+  ];
+
+  function ieladet(id, href) {
+    if (document.getElementById(id)) return;
+    var l = document.createElement("link");
+    l.rel = "stylesheet"; l.id = id; l.href = href;
+    document.head.appendChild(l);
+  }
+
+  function saglabat(atslega, verte) {
+    try { localStorage.setItem(atslega, verte); } catch (e) {}
+  }
+
+  function atjaunotPunktus(paleteId) {
+    var p = PALETES.filter(function (x) { return x.id === paleteId; })[0] || PALETES[0];
+    punkti.innerHTML = p.krasas.map(function (c) {
+      return '<i style="--c:' + c + '"></i>';
+    }).join("");
+  }
+
+  function atzimet(konteiners, atributs, verte) {
+    var pogas = konteiners.querySelectorAll(".dp-poga");
+    for (var i = 0; i < pogas.length; i++) {
+      pogas[i].setAttribute("aria-pressed", pogas[i].getAttribute(atributs) === verte ? "true" : "false");
+    }
+  }
+
+  var paletuKonteiners = document.getElementById("dp-paletes");
+  var fontuKonteiners = document.getElementById("dp-fonti");
+
+  PALETES.forEach(function (p) {
+    var b = document.createElement("button");
+    b.className = "dp-poga";
+    b.type = "button";
+    b.setAttribute("data-palete", p.id);
+    b.setAttribute("aria-pressed", "false");
+    b.innerHTML = '<span class="dp-paraugi" aria-hidden="true">' +
+      p.krasas.map(function (c) { return '<i style="--c:' + c + '"></i>'; }).join("") +
+      "</span>" + p.nosaukums;
+    b.addEventListener("click", function () {
+      html.setAttribute("data-palete", p.id);
+      saglabat("sa-palete", p.id);
+      atzimet(paletuKonteiners, "data-palete", p.id);
+      atjaunotPunktus(p.id);
+      var tema = document.querySelector('meta[name="theme-color"]');
+      if (tema) tema.setAttribute("content", p.krasas[1]);
+    });
+    paletuKonteiners.appendChild(b);
+  });
+
+  FONTI.forEach(function (f) {
+    var b = document.createElement("button");
+    b.className = "dp-poga";
+    b.type = "button";
+    b.setAttribute("data-fonti", f.id);
+    b.setAttribute("aria-pressed", "false");
+    b.innerHTML = '<span class="dp-fonta-nosaukums">' +
+      '<b style="font-family:\'' + f.displejs + '\',Georgia,serif">' + f.displejs + "</b>" +
+      '<span style="font-family:\'' + f.teksts + '\',system-ui,sans-serif">' + f.teksts + "</span>" +
+      "</span>";
+    b.addEventListener("click", function () {
+      ieladet("fonts-" + f.id, window.SA_FONTI[f.id]);
+      html.setAttribute("data-fonti", f.id);
+      saglabat("sa-fonti", f.id);
+      atzimet(fontuKonteiners, "data-fonti", f.id);
+    });
+    fontuKonteiners.appendChild(b);
+  });
+
+  atzimet(paletuKonteiners, "data-palete", html.getAttribute("data-palete"));
+  atzimet(fontuKonteiners, "data-fonti", html.getAttribute("data-fonti"));
+  atjaunotPunktus(html.getAttribute("data-palete"));
+
+  function atvert() {
+    // Fontu paraugus ielādē tikai tad, kad panelis tiešām tiek atvērts.
+    FONTI.forEach(function (f) { ieladet("fonts-" + f.id, window.SA_FONTI[f.id]); });
+    atzimet(paletuKonteiners, "data-palete", html.getAttribute("data-palete"));
+    atzimet(fontuKonteiners, "data-fonti", html.getAttribute("data-fonti"));
+    atjaunotPunktus(html.getAttribute("data-palete"));
+    panelis.hidden = false;
+    poga.setAttribute("aria-expanded", "true");
+  }
+  function aizvert() {
+    panelis.hidden = true;
+    poga.setAttribute("aria-expanded", "false");
+  }
+
+  poga.addEventListener("click", function (e) {
+    e.stopPropagation();
+    if (panelis.hidden) { atvert(); } else { aizvert(); }
+  });
+  document.getElementById("dp-aizvert").addEventListener("click", aizvert);
+  panelis.addEventListener("click", function (e) { e.stopPropagation(); });
+  document.addEventListener("click", function () { if (!panelis.hidden) aizvert(); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !panelis.hidden) { aizvert(); poga.focus(); }
+  });
+
+  // Ritinot poga saraujas līdz krāsu punktiem, lai neaizsegtu tekstu.
+  function parbauditRitinajumu() {
+    if (window.scrollY > 70) {
+      poga.setAttribute("data-mazs", "");
+    } else {
+      poga.removeAttribute("data-mazs");
+    }
+  }
+  parbauditRitinajumu();
+  window.addEventListener("scroll", parbauditRitinajumu, { passive: true });
+})();
+</script>
 
 </body>
 </html>
