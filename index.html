@@ -19,35 +19,186 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23221B14'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23B8541A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link id="fonts-cormorant" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500..700;1,500..700&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link id="fonts-cormorant" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <script>
-  window.SA_FONTI = {
-    cormorant:  "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500..700;1,500..700&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap",
-    playfair:   "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500..700;1,500..700&family=Inter:wght@400;500;600&display=swap",
-    bodoni:     "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..700;1,6..96,500..700&family=Manrope:wght@400;500;600&display=swap",
-    instrument: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&display=swap",
-    garamond:   "https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500..700;1,500..700&family=Poppins:ital,wght@0,400;0,500;1,400&display=swap",
-    newsreader: "https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500..700;1,6..72,500..700&family=Figtree:wght@400;500;600&display=swap",
-    spectral:   "https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,600;0,700;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,400..600;1,9..40,400&display=swap",
-    literata:   "https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,600..700;1,7..72,600&family=Karla:ital,wght@0,400;0,500;1,400&display=swap",
-    lora:       "https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,600&family=Outfit:wght@400;500;600&display=swap",
-    bricolage:  "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:ital,wght@0,400;0,500;1,400&display=swap"
-  };
-  (function () {
+  /* Dizaina izvēle: 20 krāsu paletes un 100 fontu pāri.
+     Paletes veidotas OKLCH telpā; katram teksta/fona pārim pārbaudīts WCAG kontrasts
+     (teksts ≥ 10:1, pelēkais ≥ 4.6:1, akcenta virsraksti ≥ 3:1).
+     Fonti: [id, grupa, virsrakstu fonts, teksta fonts, svars, virsrakstu mērogs, teksta mērogs, virsraksts bez serifiem, teksts bez serifiem, Google Fonts vaicājums].
+     Katrs fonts vizuāli pārbaudīts ar latviešu garumzīmēm un mīkstinājumiem. */
+  window.SA = (function () {
+    var PALETES = [
+      {"id":"tinte","fons":"#F4EDE2","teksts":"#221B14","virsma":"#221B14","virsmaTeksts":"#F4EDE2","akcents":"#B8541A","akcentsDzilais":"#B04D0E","akcentsVirsma":"#E08A45","pelni":"#756959","pelniVirsma":"#B9AFA2"},
+      {"id":"melna","fons":"#F1EDE4","teksts":"#111110","virsma":"#111110","virsmaTeksts":"#F1EDE4","akcents":"#CE5F1B","akcentsDzilais":"#B24B00","akcentsVirsma":"#E8873C","pelni":"#6E6A62","pelniVirsma":"#AEA9A0"},
+      {"id":"kakao","fons":"#F0E7D9","teksts":"#3D2A1C","virsma":"#3D2A1C","virsmaTeksts":"#F6EEE2","akcents":"#BE6420","akcentsDzilais":"#A34E00","akcentsVirsma":"#E29A55","pelni":"#796350","pelniVirsma":"#C7B6A2"},
+      {"id":"terakota","fons":"#F6EDE1","teksts":"#2E211A","virsma":"#6F2E14","virsmaTeksts":"#FEF1E4","akcents":"#C05A21","akcentsDzilais":"#B14D0C","akcentsVirsma":"#F3B27A","pelni":"#796754","pelniVirsma":"#E7C3A6"},
+      {"id":"rieksts","fons":"#F7F0E3","teksts":"#33261C","virsma":"#5C4433","virsmaTeksts":"#FFFFFF","akcents":"#D96809","akcentsDzilais":"#B04F07","akcentsVirsma":"#F5B274","pelni":"#7B6955","pelniVirsma":"#D9C4AC"},
+      {"id":"karamele","fons":"#FBF4E7","teksts":"#3B2C1E","virsma":"#7A5A3A","virsmaTeksts":"#FFFFFF","akcents":"#DD6B02","akcentsDzilais":"#B15400","akcentsVirsma":"#FBC38A","pelni":"#7F6B51","pelniVirsma":"#EFDBBF"},
+      {"id":"kanelis","fons":"#F2E7D6","teksts":"#3A2A1D","virsma":"#6B4A2E","virsmaTeksts":"#FFFFFF","akcents":"#D16200","akcentsDzilais":"#A54E07","akcentsVirsma":"#F2AC63","pelni":"#796347","pelniVirsma":"#DFC7A8"},
+      {"id":"smilsakmens","fons":"#EFE6D6","teksts":"#413120","virsma":"#8A6A4A","virsmaTeksts":"#FFFFFF","akcents":"#D75C03","akcentsDzilais":"#AA4900","akcentsVirsma":"#FFD2A6","pelni":"#776343","pelniVirsma":"#FEF6EA"},
+      {"id":"piena-kafija","fons":"#F5F1E8","teksts":"#3A322B","virsma":"#4A3B30","virsmaTeksts":"#F6F1E8","akcents":"#DB6719","akcentsDzilais":"#B34F0D","akcentsVirsma":"#F5AE79","pelni":"#766B5F","pelniVirsma":"#CDBEAD"},
+      {"id":"medus","fons":"#FAF3E6","teksts":"#2B2118","virsma":"#3A2A1E","virsmaTeksts":"#FAF1E2","akcents":"#D17110","akcentsDzilais":"#A9560F","akcentsVirsma":"#F0A456","pelni":"#7C6B59","pelniVirsma":"#C4B29C"},
+      {"id":"rusa","fons":"#F8EFE8","teksts":"#2A1C17","virsma":"#4A2018","virsmaTeksts":"#FBEDE4","akcents":"#C24A1E","akcentsDzilais":"#A23E14","akcentsVirsma":"#F2A27A","pelni":"#80665C","pelniVirsma":"#D9B4A4"},
+      {"id":"mokka","fons":"#E6DACA","teksts":"#2F241C","virsma":"#4A362A","virsmaTeksts":"#F0E6D8","akcents":"#B85A1A","akcentsDzilais":"#97480E","akcentsVirsma":"#E8A066","pelni":"#6E5C4A","pelniVirsma":"#C9B6A0"},
+      {"id":"ozols","fons":"#F2EEE2","teksts":"#29261B","virsma":"#3E3A2A","virsmaTeksts":"#F4F0E4","akcents":"#C8601C","akcentsDzilais":"#A04C12","akcentsVirsma":"#E9A160","pelni":"#706A58","pelniVirsma":"#C3BCA6"},
+      {"id":"lins","fons":"#F8F6F1","teksts":"#24201C","virsma":"#3B342D","virsmaTeksts":"#F8F6F1","akcents":"#C9581C","akcentsDzilais":"#A94812","akcentsVirsma":"#E8935A","pelni":"#746E68","pelniVirsma":"#BDB5AB"},
+      {"id":"persiks","fons":"#FBEFE4","teksts":"#3A2418","virsma":"#8A3E1E","virsmaTeksts":"#FFFFFF","akcents":"#D85E1F","akcentsDzilais":"#B04A14","akcentsVirsma":"#FFC59E","pelni":"#826656","pelniVirsma":"#F2CDB5"},
+      {"id":"kastanis","fons":"#F1E6D8","teksts":"#2E1F16","virsma":"#5A2E1A","virsmaTeksts":"#F8EDE0","akcents":"#C8601E","akcentsDzilais":"#A24C12","akcentsVirsma":"#F0A870","pelni":"#776252","pelniVirsma":"#DDBFA8"},
+      {"id":"dzintars","fons":"#FAF4EA","teksts":"#33271D","virsma":"#6E4B2A","virsmaTeksts":"#FFFFFF","akcents":"#CD750A","akcentsDzilais":"#A65A0C","akcentsVirsma":"#F6C27E","pelni":"#7E6B56","pelniVirsma":"#E6D0B2"},
+      {"id":"vakars","fons":"#14100D","teksts":"#F0E5D6","virsma":"#F0E5D6","virsmaTeksts":"#17120E","akcents":"#E4823C","akcentsDzilais":"#E4823C","akcentsVirsma":"#B8541A","pelni":"#A2968A","pelniVirsma":"#6B5A48"},
+      {"id":"sokolade","fons":"#1E1612","teksts":"#F3E7D7","virsma":"#3A2A20","virsmaTeksts":"#F3E7D7","akcents":"#E8893F","akcentsDzilais":"#F0A061","akcentsVirsma":"#EE9A55","pelni":"#AE9F90","pelniVirsma":"#BBA996"},
+      {"id":"espresso","fons":"#2A1F18","teksts":"#F4EADC","virsma":"#F4EADC","virsmaTeksts":"#2A1F18","akcents":"#EE9450","akcentsDzilais":"#F2A56A","akcentsVirsma":"#B5561C","pelni":"#B3A594","pelniVirsma":"#6E5A48"}
+    ];
+    var FONTI = [
+      ["cormorant","klasiski","Cormorant Garamond","Work Sans",600,1,1,0,1,"family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["garamond","klasiski","EB Garamond","Poppins",600,0.98,0.94,0,1,"family=EB+Garamond:ital,wght@0,600;1,500;1,600&family=Poppins:ital,wght@0,400;0,500;0,600;1,400"],
+      ["garamond-source","klasiski","EB Garamond","Source Sans 3",600,0.99,1.01,0,1,"family=EB+Garamond:ital,wght@0,600;1,500;1,600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400"],
+      ["cormorant-nunito","klasiski","Cormorant","Nunito Sans",600,1.03,1.0,0,1,"family=Cormorant:ital,wght@0,600;1,500;1,600&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,500;0,6..12,600;1,6..12,400"],
+      ["cormorant-infant","klasiski","Cormorant Infant","Karla",600,1.02,1.03,0,1,"family=Cormorant+Infant:ital,wght@0,600;1,500;1,600&family=Karla:ital,wght@0,400;0,500;0,600;1,400"],
+      ["crimson","klasiski","Crimson Pro","Work Sans",600,1.04,1.0,0,1,"family=Crimson+Pro:ital,wght@0,600;1,500;1,600&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["crimson-fira","klasiski","Crimson Text","Fira Sans",600,0.99,0.96,0,1,"family=Crimson+Text:ital,wght@0,600;1,600&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["cardo","klasiski","Cardo","Mulish",400,0.96,0.99,0,1,"family=Cardo:ital,wght@0,400;1,400&family=Mulish:ital,wght@0,400;0,500;0,600;1,400"],
+      ["goudy","klasiski","Sorts Mill Goudy","Figtree",400,0.93,1.0,0,1,"family=Sorts+Mill+Goudy:ital,wght@0,400;1,400&family=Figtree:ital,wght@0,400;0,500;0,600;1,400"],
+      ["alegreya","klasiski","Alegreya","Alegreya Sans",600,0.98,1.04,0,1,"family=Alegreya:ital,wght@0,600;1,500;1,600&family=Alegreya+Sans:ital,wght@0,400;0,500;1,400"],
+      ["vollkorn","klasiski","Vollkorn","Cabin",600,0.91,1.01,0,1,"family=Vollkorn:ital,wght@0,600;1,500;1,600&family=Cabin:ital,wght@0,400;0,500;0,600;1,400"],
+      ["caslon-display","klasiski","Libre Caslon Display","Libre Franklin",400,1.01,0.96,0,1,"family=Libre+Caslon+Display&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;1,400"],
+      ["caslon","klasiski","Libre Caslon Text","Public Sans",400,0.84,0.97,0,1,"family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["baskerville","klasiski","Libre Baskerville","Mulish",600,0.81,0.99,0,1,"family=Libre+Baskerville:ital,wght@0,600;1,500;1,600&family=Mulish:ital,wght@0,400;0,500;0,600;1,400"],
+      ["castoro","klasiski","Castoro","Hanken Grotesk",400,0.92,1.0,0,1,"family=Castoro:ital,wght@0,400;1,400&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400"],
+      ["bona","klasiski","Bona Nova","DM Sans",400,0.93,1.0,0,1,"family=Bona+Nova:ital,wght@0,400;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400"],
+      ["gelasio","klasiski","Gelasio","Inter",600,0.86,0.97,0,1,"family=Gelasio:ital,wght@0,600;1,500;1,600&family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400"],
+      ["linden","klasiski","Linden Hill","Karla",400,1.04,1.03,0,1,"family=Linden+Hill:ital,wght@0,400;1,400&family=Karla:ital,wght@0,400;0,500;0,600;1,400"],
+      ["fanwood","klasiski","Fanwood Text","Nunito Sans",400,1.02,1.0,0,1,"family=Fanwood+Text:ital,wght@0,400;1,400&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,500;0,6..12,600;1,6..12,400"],
+      ["radley","klasiski","Radley","Kumbh Sans",400,0.97,1.0,0,1,"family=Radley:ital,wght@0,400;1,400&family=Kumbh+Sans:wght@400;500;600"],
+      ["mate","klasiski","Mate","Red Hat Text",400,0.94,1.0,0,1,"family=Mate:ital,wght@0,400;1,400&family=Red+Hat+Text:ital,wght@0,400;0,500;0,600;1,400"],
+      ["average","klasiski","Average","Barlow",400,0.95,0.99,0,1,"family=Average&family=Barlow:ital,wght@0,400;0,500;0,600;1,400"],
+      ["ibarra","klasiski","Ibarra Real Nova","Albert Sans",600,0.94,1.0,0,1,"family=Ibarra+Real+Nova:ital,wght@0,600;1,500;1,600&family=Albert+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["joan","klasiski","Joan","Questrial",400,0.95,0.99,0,1,"family=Joan&family=Questrial"],
+      ["alike","klasiski","Alike","Signika",400,0.91,0.99,0,1,"family=Alike&family=Signika:wght@400;500;600"],
+      ["playfair","eleganti","Playfair Display","Inter",600,0.9,0.97,0,1,"family=Playfair+Display:ital,wght@0,600;1,500;1,600&family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400"],
+      ["bodoni","eleganti","Bodoni Moda","Manrope",500,0.92,0.97,0,1,"family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,500&family=Manrope:wght@400;500;600"],
+      ["instrument","eleganti","Instrument Serif","Archivo",400,1.04,0.96,0,1,"family=Instrument+Serif:ital,wght@0,400;1,400&family=Archivo:ital,wght@0,400;0,500;0,600;1,400"],
+      ["playfair-jauns","eleganti","Playfair","Figtree",500,1.04,1.0,0,1,"family=Playfair:ital,opsz,wght@0,5..1200,500;1,5..1200,500&family=Figtree:ital,wght@0,400;0,500;0,600;1,400"],
+      ["libre-bodoni","eleganti","Libre Bodoni","Albert Sans",500,0.88,1.0,0,1,"family=Libre+Bodoni:ital,wght@0,500;1,500&family=Albert+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["gilda","eleganti","Gilda Display","Nunito Sans",400,0.92,1.0,0,1,"family=Gilda+Display&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,500;0,6..12,600;1,6..12,400"],
+      ["bellefair","eleganti","Bellefair","Mulish",400,1.02,0.99,0,1,"family=Bellefair&family=Mulish:ital,wght@0,400;0,500;0,600;1,400"],
+      ["gloock","eleganti","Gloock","Instrument Sans",400,0.88,0.99,0,1,"family=Gloock&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["young","eleganti","Young Serif","Plus Jakarta Sans",400,0.83,0.95,0,1,"family=Young+Serif&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["abril","eleganti","Abril Fatface","Karla",400,0.9,1.03,0,1,"family=Abril+Fatface&family=Karla:ital,wght@0,400;0,500;0,600;1,400"],
+      ["yeseva","eleganti","Yeseva One","Mulish",400,0.84,0.99,0,1,"family=Yeseva+One&family=Mulish:ital,wght@0,400;0,500;0,600;1,400"],
+      ["rozha","eleganti","Rozha One","Outfit",400,0.99,1.03,0,1,"family=Rozha+One&family=Outfit:wght@400;500;600"],
+      ["noto-display","eleganti","Noto Serif Display","Noto Sans",500,0.87,0.95,0,1,"family=Noto+Serif+Display:ital,wght@0,500;1,500&family=Noto+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["old-standard","eleganti","Old Standard TT","Libre Franklin",400,0.91,0.96,0,1,"family=Old+Standard+TT:ital,wght@0,400;1,400&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;1,400"],
+      ["marcellus","eleganti","Marcellus","Red Hat Text",400,0.92,1.0,0,1,"family=Marcellus&family=Red+Hat+Text:ital,wght@0,400;0,500;0,600;1,400"],
+      ["bodoni-dm","eleganti","Bodoni Moda","DM Sans",500,0.86,1.0,0,1,"family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400"],
+      ["playfair-source","eleganti","Playfair Display","Source Sans 3",600,0.9,1.01,0,1,"family=Playfair+Display:ital,wght@0,600;1,500;1,600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400"],
+      ["instrument-tight","eleganti","Instrument Serif","Inter Tight",400,1.06,0.95,0,1,"family=Instrument+Serif:ital,wght@0,400;1,400&family=Inter+Tight:ital,wght@0,400;0,500;0,600;1,400"],
+      ["unna","eleganti","Unna","Lexend Deca",400,1.03,0.96,0,1,"family=Unna:ital,wght@0,400;1,400&family=Lexend+Deca:wght@400;500;600"],
+      ["abhaya","eleganti","Abhaya Libre","Mukta",600,1.03,1.04,0,1,"family=Abhaya+Libre:wght@600&family=Mukta:wght@400;500;600"],
+      ["eczar","eleganti","Eczar","Barlow",500,0.93,0.99,0,1,"family=Eczar:wght@500&family=Barlow:ital,wght@0,400;0,500;0,600;1,400"],
+      ["imbue","eleganti","Imbue","Outfit",500,1.08,1.03,0,1,"family=Imbue:opsz,wght@10..100,500&family=Outfit:wght@400;500;600"],
+      ["newsreader","lasami","Newsreader","Figtree",600,0.95,0.99,0,1,"family=Newsreader:ital,opsz,wght@0,6..72,600;1,6..72,500;1,6..72,600&family=Figtree:ital,wght@0,400;0,500;0,600;1,400"],
+      ["spectral","lasami","Spectral","DM Sans",600,0.9,1,0,1,"family=Spectral:ital,wght@0,600;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400"],
+      ["literata","lasami","Literata","Karla",600,0.86,1,0,1,"family=Literata:ital,opsz,wght@0,7..72,600;1,7..72,500;1,7..72,600&family=Karla:ital,wght@0,400;0,500;0,600;1,400"],
+      ["lora","lasami","Lora","Outfit",600,0.89,0.99,0,1,"family=Lora:ital,wght@0,600;1,500;1,600&family=Outfit:wght@400;500;600"],
+      ["source-serif","lasami","Source Serif 4","Source Sans 3",600,0.97,1.01,0,1,"family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,500;1,8..60,600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400"],
+      ["petrona","lasami","Petrona","Inter",600,0.94,0.97,0,1,"family=Petrona:ital,wght@0,600;1,500;1,600&family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400"],
+      ["faustina","lasami","Faustina","Rubik",600,0.96,0.97,0,1,"family=Faustina:ital,wght@0,600;1,500;1,600&family=Rubik:ital,wght@0,400;0,500;0,600;1,400"],
+      ["merriweather","lasami","Merriweather","Open Sans",600,0.89,0.95,0,1,"family=Merriweather:ital,opsz,wght@0,18..144,600;1,18..144,500;1,18..144,600&family=Open+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["pt-serif","lasami","PT Serif","PT Sans",400,0.91,1.0,0,1,"family=PT+Serif:ital,wght@0,400;1,400&family=PT+Sans:ital,wght@0,400;1,400"],
+      ["plex","lasami","IBM Plex Serif","IBM Plex Sans",600,0.86,0.97,0,1,"family=IBM+Plex+Serif:ital,wght@0,600;1,500;1,600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["roboto-serif","lasami","Roboto Serif","Roboto",600,0.85,0.95,0,1,"family=Roboto+Serif:ital,opsz,wght@0,8..144,600;1,8..144,500;1,8..144,600&family=Roboto:ital,wght@0,400;0,500;0,600;1,400"],
+      ["noto-serif","lasami","Noto Serif","Noto Sans",600,0.85,0.95,0,1,"family=Noto+Serif:ital,wght@0,600;1,500;1,600&family=Noto+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["brygada","lasami","Brygada 1918","Manrope",600,0.91,0.94,0,1,"family=Brygada+1918:ital,wght@0,600;1,500;1,600&family=Manrope:wght@400;500;600"],
+      ["besley","lasami","Besley","Albert Sans",600,0.81,1.0,0,1,"family=Besley:ital,wght@0,600;1,500;1,600&family=Albert+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["domine","lasami","Domine","Overpass",600,0.85,0.99,0,1,"family=Domine:wght@600&family=Overpass:ital,wght@0,400;0,500;0,600;1,400"],
+      ["piazzolla","lasami","Piazzolla","Encode Sans",600,0.95,0.94,0,1,"family=Piazzolla:ital,opsz,wght@0,8..30,600;1,8..30,500;1,8..30,600&family=Encode+Sans:wght@400;500;600"],
+      ["stix","lasami","STIX Two Text","Atkinson Hyperlegible Next",600,0.93,0.99,0,1,"family=STIX+Two+Text:ital,wght@0,600;1,500;1,600&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;1,400"],
+      ["hedvig","lasami","Hedvig Letters Serif","Hanken Grotesk",400,0.9,1.0,0,1,"family=Hedvig+Letters+Serif:opsz,wght@12..24,400&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400"],
+      ["manuale","lasami","Manuale","Lexend",600,0.97,0.96,0,1,"family=Manuale:ital,wght@0,600;1,500;1,600&family=Lexend:wght@400;500;600"],
+      ["yrsa","lasami","Yrsa","Chivo",600,1.06,0.97,0,1,"family=Yrsa:ital,wght@0,600;1,500;1,600&family=Chivo:ital,wght@0,400;0,500;0,600;1,400"],
+      ["bitter","lasami","Bitter","Asap",600,0.89,0.97,0,1,"family=Bitter:ital,wght@0,600;1,500;1,600&family=Asap:ital,wght@0,400;0,500;0,600;1,400"],
+      ["zilla","lasami","Zilla Slab","Fira Sans",600,0.94,0.96,0,1,"family=Zilla+Slab:ital,wght@0,600;1,500;1,600&family=Fira+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["kreon","lasami","Kreon","Catamaran",600,0.95,1.0,0,1,"family=Kreon:wght@600&family=Catamaran:wght@400;500;600"],
+      ["aleo","lasami","Aleo","Spline Sans",600,0.88,0.94,0,1,"family=Aleo:ital,wght@0,600;1,500;1,600&family=Spline+Sans:wght@400;500;600"],
+      ["charis","lasami","Charis SIL","Wix Madefor Text",400,0.93,1.0,0,1,"family=Charis+SIL:ital,wght@0,400;1,400&family=Wix+Madefor+Text:ital,wght@0,400;0,500;0,600;1,400"],
+      ["gentium","lasami","Gentium Book Plus","Nunito",400,1.0,1.0,0,1,"family=Gentium+Book+Plus:ital,wght@0,400;1,400&family=Nunito:ital,wght@0,400;0,500;0,600;1,400"],
+      ["frank-ruhl","lasami","Frank Ruhl Libre","Heebo",600,0.93,0.95,0,1,"family=Frank+Ruhl+Libre:wght@600&family=Heebo:wght@400;500;600"],
+      ["noticia","lasami","Noticia Text","Kumbh Sans",400,0.9,1.0,0,1,"family=Noticia+Text:ital,wght@0,400;1,400&family=Kumbh+Sans:wght@400;500;600"],
+      ["spectral-nunito","lasami","Spectral","Nunito Sans",600,0.92,1.0,0,1,"family=Spectral:ital,wght@0,600;1,500;1,600&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,500;0,6..12,600;1,6..12,400"],
+      ["rokkitt","lasami","Rokkitt","Sofia Sans",600,1.0,1.01,0,1,"family=Rokkitt:ital,wght@0,600;1,500;1,600&family=Sofia+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["bricolage","bezserifu","Bricolage Grotesque","Instrument Sans",600,0.88,1,1,1,"family=Bricolage+Grotesque:opsz,wght@12..96,600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["syne","bezserifu","Syne","Inter",600,0.88,0.97,1,1,"family=Syne:wght@600&family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400"],
+      ["space","bezserifu","Space Grotesk","Work Sans",600,0.87,1.0,1,1,"family=Space+Grotesk:wght@600&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["familjen","bezserifu","Familjen Grotesk","Literata",600,0.95,0.97,1,0,"family=Familjen+Grotesk:ital,wght@0,600;1,500;1,600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400"],
+      ["hanken","bezserifu","Hanken Grotesk","Lora",600,0.9,0.99,1,0,"family=Hanken+Grotesk:ital,wght@0,600;1,500;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400"],
+      ["schibsted","bezserifu","Schibsted Grotesk","Source Serif 4",600,0.87,1.06,1,0,"family=Schibsted+Grotesk:ital,wght@0,600;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400"],
+      ["onest","bezserifu","Onest","Golos Text",600,0.87,0.96,1,1,"family=Onest:wght@600&family=Golos+Text:wght@400;500;600"],
+      ["geologica","bezserifu","Geologica","Figtree",600,0.87,1.0,1,1,"family=Geologica:wght@600&family=Figtree:ital,wght@0,400;0,500;0,600;1,400"],
+      ["sora","bezserifu","Sora","Manrope",600,0.84,0.94,1,1,"family=Sora:wght@600&family=Manrope:wght@400;500;600"],
+      ["epilogue","bezserifu","Epilogue","Public Sans",600,0.82,0.97,1,1,"family=Epilogue:ital,wght@0,600;1,500;1,600&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["darker","bezserifu","Darker Grotesque","Work Sans",600,1.08,1.0,1,1,"family=Darker+Grotesque:wght@600&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400"],
+      ["jakarta","bezserifu","Plus Jakarta Sans","Mulish",600,0.86,0.99,1,1,"family=Plus+Jakarta+Sans:ital,wght@0,600;1,500;1,600&family=Mulish:ital,wght@0,400;0,500;0,600;1,400"],
+      ["albert","bezserifu","Albert Sans","Crimson Pro",600,0.89,1.16,1,0,"family=Albert+Sans:ital,wght@0,600;1,500;1,600&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400"],
+      ["red-hat","bezserifu","Red Hat Display","Red Hat Text",600,0.9,1.0,1,1,"family=Red+Hat+Display:ital,wght@0,600;1,500;1,600&family=Red+Hat+Text:ital,wght@0,400;0,500;0,600;1,400"],
+      ["lexend","bezserifu","Lexend","Nunito Sans",600,0.85,1.0,1,1,"family=Lexend:wght@600&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,500;0,6..12,600;1,6..12,400"],
+      ["tenor","bezserifu","Tenor Sans","Spectral",400,0.87,1.08,1,0,"family=Tenor+Sans&family=Spectral:ital,wght@0,400;0,500;0,600;1,400"],
+      ["josefin","bezserifu","Josefin Sans","Karla",600,0.88,1.03,1,1,"family=Josefin+Sans:ital,wght@0,600;1,500;1,600&family=Karla:ital,wght@0,400;0,500;0,600;1,400"],
+      ["raleway","bezserifu","Raleway","Merriweather",600,0.88,0.96,1,0,"family=Raleway:ital,wght@0,600;1,500;1,600&family=Merriweather:ital,opsz,wght@0,18..144,400;0,18..144,500;0,18..144,600;1,18..144,400"],
+      ["montserrat","bezserifu","Montserrat","Hind",600,0.85,0.99,1,1,"family=Montserrat:ital,wght@0,600;1,500;1,600&family=Hind:wght@400;500;600"],
+      ["wix","bezserifu","Wix Madefor Display","Wix Madefor Text",600,0.87,1.0,1,1,"family=Wix+Madefor+Display:wght@600&family=Wix+Madefor+Text:ital,wght@0,400;0,500;0,600;1,400"],
+      ["ysabeau","bezserifu","Ysabeau","Ysabeau Office",600,0.98,1.16,1,1,"family=Ysabeau:ital,wght@0,600;1,500;1,600&family=Ysabeau+Office:ital,wght@0,400;0,500;0,600;1,400"],
+      ["mona","bezserifu","Mona Sans","Literata",600,0.86,0.97,1,0,"family=Mona+Sans:ital,wght@0,600;1,500;1,600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400"],
+      ["funnel","bezserifu","Funnel Display","Funnel Sans",600,0.89,1.0,0,1,"family=Funnel+Display:wght@600&family=Funnel+Sans:ital,wght@0,400;0,500;0,600;1,400"]
+    ];
+    var MAINIGIE = {
+      fons: "--fons", teksts: "--teksts", virsma: "--virsma", virsmaTeksts: "--virsma-teksts",
+      akcents: "--akcents", akcentsDzilais: "--akcents-dzilais", akcentsVirsma: "--akcents-virsma",
+      pelni: "--pelni", pelniVirsma: "--pelni-virsma"
+    };
+    var d = document.documentElement;
+
+    function atrast(saraksts, id, dabut) {
+      for (var i = 0; i < saraksts.length; i++) if (dabut(saraksts[i]) === id) return i;
+      return 0;
+    }
+    function ieladet(i) {
+      var f = FONTI[i];
+      if (!f || document.getElementById("fonts-" + f[0])) return;
+      var l = document.createElement("link");
+      l.rel = "stylesheet"; l.id = "fonts-" + f[0];
+      l.href = "https://fonts.googleapis.com/css2?" + f[9] + "&display=swap";
+      document.head.appendChild(l);
+    }
+    function lietotPaleti(i) {
+      var p = PALETES[i];
+      for (var k in MAINIGIE) d.style.setProperty(MAINIGIE[k], p[k]);
+      d.setAttribute("data-palete", p.id);
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute("content", p.virsma);
+    }
+    function lietotFontus(i) {
+      var f = FONTI[i];
+      ieladet(i);
+      d.style.setProperty("--displejs", "'" + f[2] + "', " + (f[7] ? "system-ui, sans-serif" : "Georgia, serif"));
+      d.style.setProperty("--teksta-fonts", "'" + f[3] + "', " + (f[8] ? "system-ui, sans-serif" : "Georgia, serif"));
+      d.style.setProperty("--displeja-svars", f[4]);
+      d.style.setProperty("--mers", f[5]);
+      d.style.setProperty("--teksta-mers", f[6]);
+      d.setAttribute("data-fonti", f[0]);
+    }
+
+    var sakums = { p: 0, f: 0 };
     try {
-      var d = document.documentElement;
       var p = localStorage.getItem("sa-palete");
       var f = localStorage.getItem("sa-fonti");
-      if (p) d.setAttribute("data-palete", p);
-      if (f && window.SA_FONTI[f]) {
-        d.setAttribute("data-fonti", f);
-        if (f !== "cormorant" && !document.getElementById("fonts-" + f)) {
-          var l = document.createElement("link");
-          l.rel = "stylesheet"; l.id = "fonts-" + f; l.href = window.SA_FONTI[f];
-          document.head.appendChild(l);
-        }
-      }
+      if (p) sakums.p = atrast(PALETES, p, function (x) { return x.id; });
+      if (f) sakums.f = atrast(FONTI, f, function (x) { return x[0]; });
     } catch (e) {}
+    lietotPaleti(sakums.p);
+    lietotFontus(sakums.f);
+
+    return { PALETES: PALETES, FONTI: FONTI, sakums: sakums, ieladet: ieladet, lietotPaleti: lietotPaleti, lietotFontus: lietotFontus };
   })();
 </script>
 <style>
@@ -58,9 +209,9 @@
     --virsma: #221B14;
     --virsma-teksts: #F4EDE2;
     --akcents: #B8541A;
-    --akcents-dzilais: #B8541A;
+    --akcents-dzilais: #B04D0E;
     --akcents-virsma: #E08A45;
-    --pelni: #7C7060;
+    --pelni: #756959;
     --pelni-virsma: #B9AFA2;
 
     --displejs: 'Cormorant Garamond', Georgia, serif;
@@ -68,90 +219,6 @@
     --displeja-svars: 600;
     --mers: 1;
     --teksta-mers: 1;
-  }
-  html[data-palete="melna"] {
-    --fons: #F1EDE4; --teksts: #111110; --virsma: #111110; --virsma-teksts: #F1EDE4;
-    --akcents: #CE5F1B; --akcents-dzilais: #CE5F1B; --akcents-virsma: #E8873C;
-    --pelni: #6E6A62; --pelni-virsma: #AEA9A0;
-  }
-  html[data-palete="kakao"] {
-    --fons: #F0E7D9; --teksts: #3D2A1C; --virsma: #3D2A1C; --virsma-teksts: #F6EEE2;
-    --akcents: #BE6420; --akcents-dzilais: #BE6420; --akcents-virsma: #E29A55;
-    --pelni: #8A7360; --pelni-virsma: #C7B6A2;
-  }
-  html[data-palete="terakota"] {
-    --fons: #F6EDE1; --teksts: #2E211A; --virsma: #6F2E14; --virsma-teksts: #FBEEE1;
-    --akcents: #C05A21; --akcents-dzilais: #C05A21; --akcents-virsma: #F3B27A;
-    --pelni: #85735F; --pelni-virsma: #E7C3A6;
-  }
-  html[data-palete="vakars"] {
-    --fons: #14100D; --teksts: #F0E5D6; --virsma: #F0E5D6; --virsma-teksts: #17120E;
-    --akcents: #E4823C; --akcents-dzilais: #E4823C; --akcents-virsma: #B8541A;
-    --pelni: #A2968A; --pelni-virsma: #6B5A48;
-  }
-  /* Brūnie toņi ar spilgtu oranžu */
-  html[data-palete="rieksts"] {
-    --fons: #F7F0E3; --teksts: #33261C; --virsma: #5C4433; --virsma-teksts: #F8F1E4;
-    --akcents: #E1701A; --akcents-dzilais: #B4530F; --akcents-virsma: #F5B274;
-    --pelni: #86735F; --pelni-virsma: #D9C4AC;
-  }
-  html[data-palete="karamele"] {
-    --fons: #FBF4E7; --teksts: #3B2C1E; --virsma: #7A5A3A; --virsma-teksts: #FCF5E9;
-    --akcents: #F07818; --akcents-dzilais: #B85A0C; --akcents-virsma: #FBC38A;
-    --pelni: #8F7A60; --pelni-virsma: #E6D2B6;
-  }
-  html[data-palete="kanelis"] {
-    --fons: #F2E7D6; --teksts: #3A2A1D; --virsma: #6B4A2E; --virsma-teksts: #F7EEDF;
-    --akcents: #D96A12; --akcents-dzilais: #A8500C; --akcents-virsma: #F2AC63;
-    --pelni: #8B7458; --pelni-virsma: #DFC7A8;
-  }
-  html[data-palete="smilsakmens"] {
-    --fons: #EFE6D6; --teksts: #4A3928; --virsma: #8A6A4A; --virsma-teksts: #FAF3E7;
-    --akcents: #E2661A; --akcents-dzilais: #B2500F; --akcents-virsma: #FFD2A6;
-    --pelni: #8C7857; --pelni-virsma: #F0DCC1;
-  }
-  html[data-palete="piena-kafija"] {
-    --fons: #F5F1E8; --teksts: #3A322B; --virsma: #4A3B30; --virsma-teksts: #F6F1E8;
-    --akcents: #E8722A; --akcents-dzilais: #B85416; --akcents-virsma: #F5AE79;
-    --pelni: #7E7367; --pelni-virsma: #CDBEAD;
-  }
-
-  /* ==== Fontu komplekti ==== */
-  html[data-fonti="playfair"] {
-    --displejs: 'Playfair Display', Georgia, serif; --teksta-fonts: 'Inter', system-ui, sans-serif;
-    --displeja-svars: 600; --mers: .9; --teksta-mers: .97;
-  }
-  html[data-fonti="bodoni"] {
-    --displejs: 'Bodoni Moda', Georgia, serif; --teksta-fonts: 'Manrope', system-ui, sans-serif;
-    --displeja-svars: 500; --mers: .92; --teksta-mers: .97;
-  }
-  html[data-fonti="instrument"] {
-    --displejs: 'Instrument Serif', Georgia, serif; --teksta-fonts: 'Archivo', system-ui, sans-serif;
-    --displeja-svars: 400; --mers: 1.04; --teksta-mers: .96;
-  }
-  html[data-fonti="garamond"] {
-    --displejs: 'EB Garamond', Georgia, serif; --teksta-fonts: 'Poppins', system-ui, sans-serif;
-    --displeja-svars: 600; --mers: .98; --teksta-mers: .94;
-  }
-  html[data-fonti="newsreader"] {
-    --displejs: 'Newsreader', Georgia, serif; --teksta-fonts: 'Figtree', system-ui, sans-serif;
-    --displeja-svars: 600; --mers: .95; --teksta-mers: .99;
-  }
-  html[data-fonti="spectral"] {
-    --displejs: 'Spectral', Georgia, serif; --teksta-fonts: 'DM Sans', system-ui, sans-serif;
-    --displeja-svars: 600; --mers: .9; --teksta-mers: 1;
-  }
-  html[data-fonti="literata"] {
-    --displejs: 'Literata', Georgia, serif; --teksta-fonts: 'Karla', system-ui, sans-serif;
-    --displeja-svars: 600; --mers: .86; --teksta-mers: 1;
-  }
-  html[data-fonti="lora"] {
-    --displejs: 'Lora', Georgia, serif; --teksta-fonts: 'Outfit', system-ui, sans-serif;
-    --displeja-svars: 600; --mers: .89; --teksta-mers: .99;
-  }
-  html[data-fonti="bricolage"] {
-    --displejs: 'Bricolage Grotesque', system-ui, sans-serif; --teksta-fonts: 'Instrument Sans', system-ui, sans-serif;
-    --displeja-svars: 600; --mers: .88; --teksta-mers: 1;
   }
 
   /* ==== Atvasinātās krāsas ==== */
@@ -436,60 +503,150 @@
   }
   .dizains-poga[data-mazs] { padding: 0 11px; gap: 0; }
   .dizains-poga[data-mazs] .dizains-birka { max-width: 0; opacity: 0; }
-  .dizains-punkti { display: inline-flex; gap: 3px; flex: 0 0 auto; }
-  .dizains-punkti i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 1px color-mix(in srgb, var(--teksts) 30%, transparent); }
+  .paraugi { display: inline-flex; gap: 3px; flex: 0 0 auto; }
+  .paraugi i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 1px color-mix(in srgb, var(--teksts) 30%, transparent); }
 
-  .dizains-panelis {
+  /* Apakšējā josla: pārslēgšana ar bultām vai velkot ar pirkstu */
+  .dz-josla {
     position: fixed;
     z-index: 61;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    max-height: 78vh;
-    overflow-y: auto;
-    display: block;
+    left: calc(8px + env(safe-area-inset-left));
+    right: calc(8px + env(safe-area-inset-right));
+    bottom: calc(8px + env(safe-area-inset-bottom));
     background: var(--fons);
     color: var(--teksts);
-    border: 1px solid var(--linija);
-    border-radius: 14px;
-    box-shadow: 0 18px 50px rgba(0, 0, 0, .3);
-    padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
+    font-family: var(--teksta-fonts);
+    border-radius: 16px;
+    box-shadow: 0 10px 34px rgba(0, 0, 0, .28), 0 0 0 1px var(--linija);
+    padding: 4px 4px 2px;
   }
-  .dizains-panelis[hidden] { display: none; }
-  .dp-galva {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    margin: -16px -16px 10px; padding: 14px 16px 10px;
-    position: sticky; top: -16px; background: var(--fons); z-index: 1;
-    border-bottom: 1px solid var(--linija);
+  .dz-josla[hidden], .dz-saraksts[hidden], .ds-saturs[hidden], .ds-filtri[hidden] { display: none; }
+  html.dz-atverts body { padding-bottom: 168px; }
+  .dz-rinda {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr) 52px;
+    align-items: center;
+    touch-action: pan-y;
   }
-  .dp-virsraksts { font-family: var(--displejs); font-weight: var(--displeja-svars); font-size: 20px; line-height: 1.2; }
-  .dp-aizvert {
-    border: 0; background: none; color: var(--pelni); cursor: pointer;
-    font-size: 20px; line-height: 1; width: 34px; height: 34px; border-radius: 50%;
+  .dz-rinda + .dz-rinda { border-top: 1px solid var(--linija); }
+  .dz-bulta, .dz-centrs, .dz-mazpoga, .ds-cilne, .ds-filtrs, .ds-aizvert {
+    font-family: inherit; color: inherit; background: none; border: 0; cursor: pointer;
+    -webkit-tap-highlight-color: transparent; touch-action: manipulation;
   }
-  .dp-aizvert:hover { color: var(--teksts); }
-  .dp-birka {
-    font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase;
-    color: var(--pelni); margin: 14px 0 7px;
+  .dz-bulta {
+    height: 52px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
   }
-  .dp-birka:first-of-type { margin-top: 2px; }
-  .dp-izvele { display: flex; flex-direction: column; gap: 2px; }
-  .dp-izvele.divkolonnu { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-  .dp-poga {
-    display: flex; align-items: center; gap: 9px; width: 100%;
-    background: none; border: 1px solid transparent; border-radius: 8px;
-    padding: 8px 9px; cursor: pointer; text-align: left;
-    color: var(--teksts); font-family: var(--teksta-fonts); font-size: 12.5px;
-    line-height: 1.25;
+  .dz-bulta svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .dz-bulta:hover, .dz-centrs:hover, .dz-mazpoga:hover { background: color-mix(in srgb, var(--teksts) 6%, transparent); }
+  .dz-bulta:active, .dz-centrs:active, .dz-mazpoga:active { background: color-mix(in srgb, var(--teksts) 12%, transparent); }
+  .dz-centrs {
+    height: 52px; border-radius: 12px; padding: 0 4px; min-width: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
   }
-  .dp-poga:hover { border-color: var(--linija); }
-  .dp-poga[aria-pressed="true"] { border-color: var(--akcents); background: color-mix(in srgb, var(--akcents) 9%, transparent); }
-  .dp-paraugi { display: inline-flex; gap: 3px; flex: 0 0 auto; }
-  .dp-paraugi i { width: 14px; height: 14px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 1px color-mix(in srgb, var(--teksts) 30%, transparent); }
-  .dp-fonta-nosaukums { display: flex; flex-direction: column; line-height: 1.2; }
-  .dp-fonta-nosaukums b { font-weight: 600; font-size: 17px; }
-  .dp-fonta-nosaukums span { font-size: 11px; letter-spacing: .05em; color: var(--pelni); }
-  .dp-piezime { margin-top: 13px; font-size: 11px; line-height: 1.5; color: var(--pelni); }
+  .dz-birka { font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--pelni); line-height: 1.3; }
+  .dz-birka b { font-weight: 600; color: var(--teksts); letter-spacing: .06em; }
+  .dz-vertiba {
+    display: flex; align-items: center; justify-content: center; gap: 8px; max-width: 100%;
+    font-size: 15px; line-height: 1.3; white-space: nowrap; overflow: hidden;
+  }
+  .dz-vertiba .paraugi i { width: 15px; height: 15px; }
+  .dz-fonta-nos { overflow: hidden; text-overflow: ellipsis; }
+  .dz-fonta-nos b { font-family: var(--displejs); font-weight: var(--displeja-svars); font-size: 17px; }
+  .dz-fonta-nos span { color: var(--pelni); font-size: 12.5px; }
+  .dz-apaksa {
+    display: flex; justify-content: space-between; gap: 2px;
+    border-top: 1px solid var(--linija); padding-top: 2px;
+  }
+  .dz-mazpoga {
+    flex: 1 1 0; height: 38px; border-radius: 10px;
+    font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--pelni);
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .dz-mazpoga svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Saraksts: lai uzreiz pārlēktu uz konkrētu numuru */
+  .dz-saraksts {
+    position: fixed;
+    z-index: 62;
+    left: calc(8px + env(safe-area-inset-left));
+    right: calc(8px + env(safe-area-inset-right));
+    bottom: calc(8px + env(safe-area-inset-bottom));
+    height: min(72vh, 620px);
+    display: flex; flex-direction: column;
+    background: var(--fons);
+    color: var(--teksts);
+    font-family: var(--teksta-fonts);
+    border-radius: 16px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .32), 0 0 0 1px var(--linija);
+    overflow: hidden;
+  }
+  .ds-galva {
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 8px 8px 10px; border-bottom: 1px solid var(--linija);
+  }
+  .ds-cilnes { display: flex; gap: 4px; flex: 1 1 auto; }
+  .ds-cilne {
+    height: 40px; padding: 0 14px; border-radius: 999px;
+    font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--pelni);
+  }
+  .ds-cilne span { letter-spacing: 0; opacity: .75; margin-left: 2px; }
+  .ds-cilne[aria-selected="true"] { background: var(--teksts); color: var(--fons); }
+  .ds-aizvert { width: 40px; height: 40px; border-radius: 50%; font-size: 18px; color: var(--pelni); }
+  .ds-aizvert:hover { color: var(--teksts); }
+  .ds-filtri {
+    display: flex; gap: 6px; overflow-x: auto; padding: 8px 10px; flex: 0 0 auto;
+    border-bottom: 1px solid var(--linija); scrollbar-width: none;
+  }
+  .ds-filtri::-webkit-scrollbar { display: none; }
+  .ds-filtrs {
+    flex: 0 0 auto; height: 34px; padding: 0 13px; border-radius: 999px;
+    font-size: 12.5px; white-space: nowrap;
+    box-shadow: inset 0 0 0 1px var(--linija);
+  }
+  .ds-filtrs[aria-pressed="true"] { box-shadow: inset 0 0 0 1.5px var(--akcents-dzilais); color: var(--akcents-dzilais); font-weight: 600; }
+  .ds-saturs { flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; padding: 10px; }
+
+  .ds-paletes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .ds-palete {
+    display: block; padding: 0; border: 0; background: none; cursor: pointer; color: inherit; font: inherit;
+    border-radius: 10px; -webkit-tap-highlight-color: transparent;
+  }
+  .ds-prev {
+    display: grid; grid-template-rows: 1fr 13px; height: 64px; border-radius: 10px; overflow: hidden;
+    box-shadow: 0 0 0 1px var(--linija);
+  }
+  .ds-prev-augsa { display: flex; align-items: center; justify-content: space-between; padding: 0 9px; }
+  .ds-prev-augsa b { font-family: var(--displejs); font-weight: var(--displeja-svars); font-size: 22px; line-height: 1; }
+  .ds-prev-augsa i { width: 11px; height: 11px; border-radius: 50%; }
+  .ds-palete[aria-pressed="true"] .ds-prev { box-shadow: 0 0 0 2px var(--fons), 0 0 0 4px var(--akcents-dzilais); }
+  .ds-nr { display: block; text-align: center; font-size: 12.5px; margin-top: 5px; color: var(--pelni); font-variant-numeric: tabular-nums; }
+  .ds-palete[aria-pressed="true"] .ds-nr { color: var(--teksts); font-weight: 600; }
+
+  .ds-fonti { display: flex; flex-direction: column; }
+  .ds-grupa {
+    font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--pelni);
+    padding: 12px 6px 6px;
+  }
+  .ds-grupa:first-child { padding-top: 2px; }
+  .ds-fonts {
+    display: grid; grid-template-columns: 34px minmax(0, 1fr); align-items: center; gap: 6px;
+    width: 100%; min-height: 54px; padding: 6px; text-align: left;
+    background: none; border: 0; border-radius: 10px; cursor: pointer; color: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .ds-fonts:hover { background: color-mix(in srgb, var(--teksts) 5%, transparent); }
+  .ds-fonts[aria-pressed="true"] { background: color-mix(in srgb, var(--akcents) 11%, transparent); box-shadow: inset 0 0 0 1px var(--akcents-dzilais); }
+  .ds-fonts .ds-nr { margin: 0; text-align: right; padding-right: 4px; font-family: var(--teksta-fonts); }
+  .ds-fonts-nos { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+  .ds-fonts-nos b { font-size: 21px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ds-fonts-nos span { font-size: 12.5px; color: var(--pelni); }
+  .ds-piezime { font-size: 11px; line-height: 1.5; color: var(--pelni); padding: 14px 6px 4px; }
+
+  .tikai-lasitajam {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+  }
 
   /* ==== Plašāki ekrāni ==== */
   @media (min-width: 760px) {
@@ -546,12 +703,10 @@
     footer { padding: 26px 0 40px; }
 
     .dizains-poga { top: calc(11px + env(safe-area-inset-top)); right: 14px; height: 40px; font-size: 11px; }
-    .dizains-panelis {
-      left: auto; right: 14px; bottom: auto; top: 60px;
-      width: 358px; max-height: calc(100vh - 84px);
-      border-radius: 10px; padding: 18px;
-    }
-    .dp-galva { margin: -18px -18px 10px; padding: 16px 18px 10px; top: -18px; }
+    .dz-josla, .dz-saraksts { left: auto; right: 16px; bottom: 16px; width: 440px; }
+    .dz-saraksts { height: min(78vh, 700px); }
+    .ds-paletes { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    html.dz-atverts body { padding-bottom: 0; }
   }
 
   /* Portrets pieskaras ekrāna malai tikai tad, kad vieta to atļauj.
@@ -768,183 +923,247 @@
   </div>
 </footer>
 
-<button class="dizains-poga" id="dizains-poga" aria-expanded="false" aria-controls="dizains-panelis">
-  <span class="dizains-punkti" id="dizains-punkti" aria-hidden="true"></span>
+<button class="dizains-poga" id="dizains-poga" aria-expanded="false" aria-controls="dz-josla">
+  <span class="paraugi" id="dizains-punkti" aria-hidden="true"></span>
   <span class="dizains-birka">Dizains</span>
 </button>
 
-<div class="dizains-panelis" id="dizains-panelis" role="dialog" aria-label="Dizaina izvēle" hidden>
-  <div class="dp-galva">
-    <p class="dp-virsraksts">Izvēlies dizainu</p>
-    <button class="dp-aizvert" id="dp-aizvert" aria-label="Aizvērt izvēli">✕</button>
+<div class="dz-josla" id="dz-josla" role="region" aria-label="Dizaina izvēle" hidden>
+  <div class="dz-rinda" data-veids="palete">
+    <button class="dz-bulta" type="button" data-solis="-1" aria-label="Iepriekšējās krāsas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="dz-centrs" type="button" data-cilne="krasas" aria-label="Atvērt visu krāsu sarakstu">
+      <span class="dz-birka">Krāsas <b id="dz-palete-nr">1</b> / <span id="dz-palete-kopa">20</span></span>
+      <span class="dz-vertiba"><span class="paraugi" id="dz-palete-paraugi" aria-hidden="true"></span></span>
+    </button>
+    <button class="dz-bulta" type="button" data-solis="1" aria-label="Nākamās krāsas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
   </div>
+  <div class="dz-rinda" data-veids="fonti">
+    <button class="dz-bulta" type="button" data-solis="-1" aria-label="Iepriekšējie fonti"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="dz-centrs" type="button" data-cilne="fonti" aria-label="Atvērt visu fontu sarakstu">
+      <span class="dz-birka">Fonti <b id="dz-fonti-nr">1</b> / <span id="dz-fonti-kopa">100</span></span>
+      <span class="dz-vertiba"><span class="dz-fonta-nos" id="dz-fonti-nos"></span></span>
+    </button>
+    <button class="dz-bulta" type="button" data-solis="1" aria-label="Nākamie fonti"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+  <div class="dz-apaksa">
+    <button class="dz-mazpoga" type="button" id="dz-nejausi"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.2"/><circle cx="15" cy="15" r="1.2"/><circle cx="15" cy="9" r="1.2"/><circle cx="9" cy="15" r="1.2"/></svg>Nejauši</button>
+    <button class="dz-mazpoga" type="button" data-cilne="krasas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Saraksts</button>
+    <button class="dz-mazpoga" type="button" id="dz-paslept"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>Paslēpt</button>
+  </div>
+  <p class="tikai-lasitajam" id="dz-pazinojums" aria-live="polite"></p>
+</div>
 
-  <p class="dp-birka">Krāsas</p>
-  <div class="dp-izvele divkolonnu" id="dp-paletes"></div>
-
-  <p class="dp-birka">Fonti ar raksturu</p>
-  <div class="dp-izvele" id="dp-fonti-raksturs"></div>
-
-  <p class="dp-birka">Fonti, kas viegli lasās</p>
-  <div class="dp-izvele" id="dp-fonti-lasami"></div>
-
-  <p class="dp-piezime">Izvēle saglabājas šajā ierīcē. Gatavajā lapā šīs pogas nebūs.</p>
+<div class="dz-saraksts" id="dz-saraksts" role="dialog" aria-label="Visas dizaina izvēles" hidden>
+  <div class="ds-galva">
+    <div class="ds-cilnes" role="tablist">
+      <button class="ds-cilne" type="button" role="tab" data-uz="krasas" aria-selected="true">Krāsas <span>20</span></button>
+      <button class="ds-cilne" type="button" role="tab" data-uz="fonti" aria-selected="false">Fonti <span>100</span></button>
+    </div>
+    <button class="ds-aizvert" type="button" id="ds-aizvert" aria-label="Aizvērt sarakstu">✕</button>
+  </div>
+  <div class="ds-filtri" id="ds-filtri" hidden></div>
+  <div class="ds-saturs" id="ds-krasas"><div class="ds-paletes" id="ds-paletes"></div></div>
+  <div class="ds-saturs" id="ds-fonti" hidden><div class="ds-fonti" id="ds-fontu-saraksts"></div>
+    <p class="ds-piezime">Visiem fontiem pārbaudītas latviešu garumzīmes un mīkstinājumi. Izvēle saglabājas šajā ierīcē. Gatavajā lapā šīs izvēles nebūs.</p>
+  </div>
 </div>
 
 <script>
 (function () {
+  var SA = window.SA, PALETES = SA.PALETES, FONTI = SA.FONTI;
   var html = document.documentElement;
-  var poga = document.getElementById("dizains-poga");
-  var panelis = document.getElementById("dizains-panelis");
-  var punkti = document.getElementById("dizains-punkti");
+  var $ = function (id) { return document.getElementById(id); };
+  var poga = $("dizains-poga"), josla = $("dz-josla"), saraksts = $("dz-saraksts");
+  var GRUPAS = { klasiski: "Klasiskie", eleganti: "Elegantie", lasami: "Viegli lasāmi", bezserifu: "Bez serifiem" };
+  var st = { p: SA.sakums.p, f: SA.sakums.f };
 
-  var PALETES = [
-    { id: "tinte",        nosaukums: "Krēms",        krasas: ["#F4EDE2", "#221B14", "#B8541A"] },
-    { id: "melna",        nosaukums: "Melns",        krasas: ["#F1EDE4", "#111110", "#CE5F1B"] },
-    { id: "kakao",        nosaukums: "Kakao",        krasas: ["#F0E7D9", "#3D2A1C", "#BE6420"] },
-    { id: "terakota",     nosaukums: "Terakota",     krasas: ["#F6EDE1", "#6F2E14", "#C05A21"] },
-    { id: "vakars",       nosaukums: "Vakars",       krasas: ["#14100D", "#F0E5D6", "#E4823C"] },
-    { id: "rieksts",      nosaukums: "Rieksts",      krasas: ["#F7F0E3", "#5C4433", "#E1701A"] },
-    { id: "karamele",     nosaukums: "Karamele",     krasas: ["#FBF4E7", "#7A5A3A", "#F07818"] },
-    { id: "kanelis",      nosaukums: "Kanēlis",      krasas: ["#F2E7D6", "#6B4A2E", "#D96A12"] },
-    { id: "smilsakmens",  nosaukums: "Smilšakmens",  krasas: ["#EFE6D6", "#8A6A4A", "#E2661A"] },
-    { id: "piena-kafija", nosaukums: "Kafija",       krasas: ["#F5F1E8", "#4A3B30", "#E8722A"] }
-  ];
+  function saglabat(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function paraugi(p) {
+    return [p.fons, p.teksts, p.virsma, p.akcents].map(function (c) { return '<i style="--c:' + c + '"></i>'; }).join("");
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
-  var FONTI = [
-    { id: "cormorant",  grupa: "raksturs", displejs: "Cormorant Garamond", teksts: "Work Sans" },
-    { id: "playfair",   grupa: "raksturs", displejs: "Playfair Display",   teksts: "Inter" },
-    { id: "bodoni",     grupa: "raksturs", displejs: "Bodoni Moda",        teksts: "Manrope" },
-    { id: "instrument", grupa: "raksturs", displejs: "Instrument Serif",   teksts: "Archivo" },
-    { id: "garamond",   grupa: "raksturs", displejs: "EB Garamond",        teksts: "Poppins" },
-    { id: "newsreader", grupa: "lasami",   displejs: "Newsreader",         teksts: "Figtree" },
-    { id: "spectral",   grupa: "lasami",   displejs: "Spectral",           teksts: "DM Sans" },
-    { id: "literata",   grupa: "lasami",   displejs: "Literata",           teksts: "Karla" },
-    { id: "lora",       grupa: "lasami",   displejs: "Lora",               teksts: "Outfit" },
-    { id: "bricolage",  grupa: "lasami",   displejs: "Bricolage Grotesque", teksts: "Instrument Sans" }
-  ];
+  $("dz-palete-kopa").textContent = PALETES.length;
+  $("dz-fonti-kopa").textContent = FONTI.length;
 
-  function ieladet(id, href) {
-    if (document.getElementById(id)) return;
-    var l = document.createElement("link");
-    l.rel = "stylesheet"; l.id = id; l.href = href;
-    document.head.appendChild(l);
+  function atjaunotJoslu() {
+    var p = PALETES[st.p], f = FONTI[st.f];
+    $("dz-palete-nr").textContent = st.p + 1;
+    $("dz-palete-paraugi").innerHTML = paraugi(p);
+    $("dizains-punkti").innerHTML = [p.fons, p.virsma, p.akcents].map(function (c) { return '<i style="--c:' + c + '"></i>'; }).join("");
+    $("dz-fonti-nr").textContent = st.f + 1;
+    $("dz-fonti-nos").innerHTML = "<b>" + esc(f[2]) + "</b> <span>+ " + esc(f[3]) + "</span>";
+    var pg = saraksts.querySelectorAll(".ds-palete");
+    for (var i = 0; i < pg.length; i++) pg[i].setAttribute("aria-pressed", +pg[i].getAttribute("data-i") === st.p ? "true" : "false");
+    var fg = saraksts.querySelectorAll(".ds-fonts");
+    for (var j = 0; j < fg.length; j++) fg[j].setAttribute("aria-pressed", +fg[j].getAttribute("data-i") === st.f ? "true" : "false");
+  }
+  function pazinot(t) { $("dz-pazinojums").textContent = t; }
+
+  function izveletiesPaleti(i) {
+    st.p = (i + PALETES.length) % PALETES.length;
+    SA.lietotPaleti(st.p);
+    saglabat("sa-palete", PALETES[st.p].id);
+    atjaunotJoslu();
+    pazinot("Krāsas " + (st.p + 1) + " no " + PALETES.length);
+  }
+  function izveletiesFontus(i) {
+    st.f = (i + FONTI.length) % FONTI.length;
+    SA.lietotFontus(st.f);
+    saglabat("sa-fonti", FONTI[st.f][0]);
+    // Kaimiņus ielādē jau iepriekš, lai nākamais klikšķis nemirgo
+    SA.ieladet((st.f + 1) % FONTI.length);
+    SA.ieladet((st.f - 1 + FONTI.length) % FONTI.length);
+    atjaunotJoslu();
+    pazinot("Fonti " + (st.f + 1) + " no " + FONTI.length + ": " + FONTI[st.f][2] + " un " + FONTI[st.f][3]);
+  }
+  function solis(veids, s) {
+    if (veids === "palete") izveletiesPaleti(st.p + s); else izveletiesFontus(st.f + s);
   }
 
-  function saglabat(atslega, verte) {
-    try { localStorage.setItem(atslega, verte); } catch (e) {}
-  }
-
-  function atjaunotPunktus(paleteId) {
-    var p = PALETES.filter(function (x) { return x.id === paleteId; })[0] || PALETES[0];
-    punkti.innerHTML = p.krasas.map(function (c) { return '<i style="--c:' + c + '"></i>'; }).join("");
-  }
-
-  function atzimet(atributs, verte) {
-    var pogas = panelis.querySelectorAll(".dp-poga[" + atributs + "]");
-    for (var i = 0; i < pogas.length; i++) {
-      pogas[i].setAttribute("aria-pressed", pogas[i].getAttribute(atributs) === verte ? "true" : "false");
-    }
-  }
-
-  var paletuKonteiners = document.getElementById("dp-paletes");
-  var fontuKonteineri = {
-    raksturs: document.getElementById("dp-fonti-raksturs"),
-    lasami: document.getElementById("dp-fonti-lasami")
-  };
-
-  PALETES.forEach(function (p) {
-    var b = document.createElement("button");
-    b.className = "dp-poga";
-    b.type = "button";
-    b.setAttribute("data-palete", p.id);
-    b.setAttribute("aria-pressed", "false");
-    b.innerHTML = '<span class="dp-paraugi" aria-hidden="true">' +
-      p.krasas.map(function (c) { return '<i style="--c:' + c + '"></i>'; }).join("") +
-      "</span>" + p.nosaukums;
-    b.addEventListener("click", function () {
-      html.setAttribute("data-palete", p.id);
-      saglabat("sa-palete", p.id);
-      atzimet("data-palete", p.id);
-      atjaunotPunktus(p.id);
-      var tema = document.querySelector('meta[name="theme-color"]');
-      if (tema) tema.setAttribute("content", p.krasas[1]);
+  // Bultas un vilkšana ar pirkstu
+  Array.prototype.forEach.call(josla.querySelectorAll(".dz-rinda"), function (rinda) {
+    var veids = rinda.getAttribute("data-veids");
+    Array.prototype.forEach.call(rinda.querySelectorAll("[data-solis]"), function (b) {
+      b.addEventListener("click", function () { solis(veids, +b.getAttribute("data-solis")); });
     });
-    paletuKonteiners.appendChild(b);
+    var x0 = null, y0 = null, vilkts = false;
+    rinda.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; vilkts = false; }, { passive: true });
+    rinda.addEventListener("touchend", function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      x0 = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) { vilkts = true; solis(veids, dx < 0 ? 1 : -1); }
+    }, { passive: true });
+    rinda.addEventListener("click", function (e) { if (vilkts) { e.stopPropagation(); e.preventDefault(); vilkts = false; } }, true);
   });
 
-  FONTI.forEach(function (f) {
-    var b = document.createElement("button");
-    b.className = "dp-poga";
-    b.type = "button";
-    b.setAttribute("data-fonti", f.id);
-    b.setAttribute("aria-pressed", "false");
-    b.innerHTML = '<span class="dp-fonta-nosaukums">' +
-      '<b style="font-family:\'' + f.displejs + '\',Georgia,serif">' + f.displejs + "</b>" +
-      '<span style="font-family:\'' + f.teksts + '\',system-ui,sans-serif">' + f.teksts + "</span>" +
-      "</span>";
-    b.addEventListener("click", function () {
-      ieladet("fonts-" + f.id, window.SA_FONTI[f.id]);
-      html.setAttribute("data-fonti", f.id);
-      saglabat("sa-fonti", f.id);
-      atzimet("data-fonti", f.id);
-    });
-    fontuKonteineri[f.grupa].appendChild(b);
+  $("dz-nejausi").addEventListener("click", function () {
+    var p, f;
+    do { p = Math.floor(Math.random() * PALETES.length); } while (p === st.p);
+    do { f = Math.floor(Math.random() * FONTI.length); } while (f === st.f);
+    izveletiesPaleti(p);
+    izveletiesFontus(f);
   });
 
-  // Fontu paraugu ielādē tikai tos, kas tiešām nonāk redzamībā panelī.
-  var noverotajs = null;
-  if ("IntersectionObserver" in window) {
-    noverotajs = new IntersectionObserver(function (ieraksti) {
-      ieraksti.forEach(function (i) {
-        if (!i.isIntersecting) return;
-        var id = i.target.getAttribute("data-fonti");
-        ieladet("fonts-" + id, window.SA_FONTI[id]);
-        noverotajs.unobserve(i.target);
-      });
-    }, { root: panelis, rootMargin: "220px" });
-  }
-
-  function sinhronizet() {
-    atzimet("data-palete", html.getAttribute("data-palete"));
-    atzimet("data-fonti", html.getAttribute("data-fonti"));
-    atjaunotPunktus(html.getAttribute("data-palete"));
-  }
-  sinhronizet();
-
-  function atvert() {
-    sinhronizet();
-    panelis.hidden = false;
+  // Josla
+  function atvertJoslu() {
+    josla.hidden = false;
+    html.classList.add("dz-atverts");
     poga.setAttribute("aria-expanded", "true");
-    if (noverotajs) {
-      panelis.querySelectorAll(".dp-poga[data-fonti]").forEach(function (b) { noverotajs.observe(b); });
-    } else {
-      FONTI.forEach(function (f) { ieladet("fonts-" + f.id, window.SA_FONTI[f.id]); });
+    saglabat("sa-josla", "1");
+    SA.ieladet((st.f + 1) % FONTI.length);
+    SA.ieladet((st.f - 1 + FONTI.length) % FONTI.length);
+  }
+  function aizvertJoslu() {
+    aizvertSarakstu();
+    josla.hidden = true;
+    html.classList.remove("dz-atverts");
+    poga.setAttribute("aria-expanded", "false");
+    saglabat("sa-josla", "0");
+  }
+  poga.addEventListener("click", function () { if (josla.hidden) atvertJoslu(); else aizvertJoslu(); });
+  $("dz-paslept").addEventListener("click", aizvertJoslu);
+
+  // Saraksts
+  var filtrs = "visi", uzbuvets = false, noverotajs = null;
+  function buvetSarakstu() {
+    if (uzbuvets) return;
+    uzbuvets = true;
+    $("ds-paletes").innerHTML = PALETES.map(function (p, i) {
+      return '<button class="ds-palete" type="button" data-i="' + i + '" aria-label="Krāsas ' + (i + 1) + '">' +
+        '<span class="ds-prev" style="background:' + p.fons + ';color:' + p.teksts + '">' +
+        '<span class="ds-prev-augsa"><b>Aa</b><i style="background:' + p.akcents + '"></i></span>' +
+        '<span style="background:' + p.virsma + '"></span></span>' +
+        '<span class="ds-nr">' + (i + 1) + "</span></button>";
+    }).join("");
+    var h = "", grupa = null;
+    FONTI.forEach(function (f, i) {
+      if (f[1] !== grupa) { grupa = f[1]; h += '<p class="ds-grupa" data-grupa="' + grupa + '">' + GRUPAS[grupa] + "</p>"; }
+      h += '<button class="ds-fonts" type="button" data-i="' + i + '" data-grupa="' + f[1] + '">' +
+        '<span class="ds-nr">' + (i + 1) + "</span>" +
+        '<span class="ds-fonts-nos"><b style="font-family:\'' + f[2] + "'," + (f[7] ? "sans-serif" : "serif") + ";font-weight:" + f[4] + '">' + esc(f[2]) + "</b>" +
+        '<span style="font-family:\'' + f[3] + "'," + (f[8] ? "sans-serif" : "serif") + '">' + esc(f[3]) + "</span></span></button>";
+    });
+    $("ds-fontu-saraksts").innerHTML = h;
+    $("ds-filtri").innerHTML = '<button class="ds-filtrs" type="button" data-f="visi" aria-pressed="true">Visi</button>' +
+      Object.keys(GRUPAS).map(function (k) {
+        return '<button class="ds-filtrs" type="button" data-f="' + k + '" aria-pressed="false">' + GRUPAS[k] + "</button>";
+      }).join("");
+
+    $("ds-paletes").addEventListener("click", function (e) {
+      var b = e.target.closest(".ds-palete"); if (!b) return;
+      izveletiesPaleti(+b.getAttribute("data-i")); aizvertSarakstu();
+    });
+    $("ds-fontu-saraksts").addEventListener("click", function (e) {
+      var b = e.target.closest(".ds-fonts"); if (!b) return;
+      izveletiesFontus(+b.getAttribute("data-i")); aizvertSarakstu();
+    });
+    $("ds-filtri").addEventListener("click", function (e) {
+      var b = e.target.closest(".ds-filtrs"); if (!b) return;
+      filtrs = b.getAttribute("data-f");
+      Array.prototype.forEach.call($("ds-filtri").children, function (c) { c.setAttribute("aria-pressed", c === b ? "true" : "false"); });
+      Array.prototype.forEach.call($("ds-fontu-saraksts").children, function (c) {
+        c.hidden = filtrs !== "visi" && c.getAttribute("data-grupa") !== filtrs;
+      });
+      $("ds-fonti").scrollTop = 0;
+    });
+
+    // Fontu paraugus ielādē tikai tad, kad rinda parādās sarakstā
+    if ("IntersectionObserver" in window) {
+      noverotajs = new IntersectionObserver(function (ier) {
+        ier.forEach(function (x) {
+          if (!x.isIntersecting) return;
+          SA.ieladet(+x.target.getAttribute("data-i"));
+          noverotajs.unobserve(x.target);
+        });
+      }, { root: $("ds-fonti"), rootMargin: "300px 0px" });
+      Array.prototype.forEach.call(saraksts.querySelectorAll(".ds-fonts"), function (b) { noverotajs.observe(b); });
     }
   }
-  function aizvert() {
-    panelis.hidden = true;
-    poga.setAttribute("aria-expanded", "false");
+  function raditCilni(c) {
+    Array.prototype.forEach.call(saraksts.querySelectorAll(".ds-cilne"), function (t) {
+      t.setAttribute("aria-selected", t.getAttribute("data-uz") === c ? "true" : "false");
+    });
+    $("ds-krasas").hidden = c !== "krasas";
+    $("ds-fonti").hidden = c !== "fonti";
+    $("ds-filtri").hidden = c !== "fonti";
+    var akt = saraksts.querySelector(c === "krasas" ? '.ds-palete[aria-pressed="true"]' : '.ds-fonts[aria-pressed="true"]');
+    if (akt) {
+      var kont = c === "krasas" ? $("ds-krasas") : $("ds-fonti");
+      if (akt.hidden || akt.offsetParent === null) return;
+      kont.scrollTop = akt.offsetTop - kont.offsetTop - kont.clientHeight / 2 + akt.offsetHeight / 2;
+    }
   }
+  function atvertSarakstu(c) {
+    buvetSarakstu();
+    atjaunotJoslu();
+    saraksts.hidden = false;
+    raditCilni(c);
+  }
+  function aizvertSarakstu() { saraksts.hidden = true; }
+  Array.prototype.forEach.call(josla.querySelectorAll("[data-cilne]"), function (b) {
+    b.addEventListener("click", function () { atvertSarakstu(b.getAttribute("data-cilne")); });
+  });
+  Array.prototype.forEach.call(saraksts.querySelectorAll(".ds-cilne"), function (t) {
+    t.addEventListener("click", function () { raditCilni(t.getAttribute("data-uz")); });
+  });
+  $("ds-aizvert").addEventListener("click", aizvertSarakstu);
 
-  poga.addEventListener("click", function (e) {
-    e.stopPropagation();
-    if (panelis.hidden) { atvert(); } else { aizvert(); }
-  });
-  document.getElementById("dp-aizvert").addEventListener("click", aizvert);
-  panelis.addEventListener("click", function (e) { e.stopPropagation(); });
-  document.addEventListener("click", function () { if (!panelis.hidden) aizvert(); });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && !panelis.hidden) { aizvert(); poga.focus(); }
+    if (e.key === "Escape") {
+      if (!saraksts.hidden) aizvertSarakstu();
+      else if (!josla.hidden) { aizvertJoslu(); poga.focus(); }
+    }
   });
+
+  atjaunotJoslu();
+  try { if (localStorage.getItem("sa-josla") === "1") atvertJoslu(); } catch (e) {}
 
   // Ritinot poga saraujas līdz krāsu punktiem, lai neaizsegtu tekstu.
   function parbauditRitinajumu() {
-    if (window.scrollY > 70) {
-      poga.setAttribute("data-mazs", "");
-    } else {
-      poga.removeAttribute("data-mazs");
-    }
+    if (window.scrollY > 70) poga.setAttribute("data-mazs", "");
+    else poga.removeAttribute("data-mazs");
   }
   parbauditRitinajumu();
   window.addEventListener("scroll", parbauditRitinajumu, { passive: true });
